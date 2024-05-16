@@ -3,9 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CRM system</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    Hello World
+    <div class="outer-wrapper">
+        <section class="intro">
+            <div class="gif-wrapper">
+                <img src="assets/images/crm-gif.gif" alt="демонстрация работы систему CRM" class="gif-img">
+                <div class="gif-desc">
+                    <p>Простая и удобная система взаимодействия с клиентами и учета товара, оставшегося в наличии</p>
+                </div>
+            </div>
+            <div class="intro-header">
+                <h1 class="intro-h1">Система контакта с клиентами</h1>
+                <div class="logo">Быстро и удобно!</div>
+            </div>
+        </section>
+        <section class="form-wrapper">
+            <div class="index-signup">
+                <h3>Sign up</h3>
+                <p>Don't have an account yet? Sign up here!</p>
+                <form action="includes/signup.inc.php" method="post" class="signup-form">
+                    <input type="text" name="uid" placeholder="Имя">
+                    <input type="password" name="pwd" placeholder="Пароль">
+                    <input type="password" name="pwdrepeat" placeholder="Повторите пароль">
+                    <input type="email" name="email" placeholder="Емаил">
+                    <button type="submit" name="submit">SIGN UP</button>
+                </form>
+            </div>
+            <div class="index-login">
+                <h3>Log in</h3>
+                <p>Don't have an account yet? Sign up here!</p>
+                <form action="includes/signup.inc.php" method="post" class="signup-form">
+                    <input type="text" name="uid" placeholder="Имя">
+                    <input type="password" name="pwd" placeholder="Пароль">
+                    <button type="submit" name="submit">SIGN UP</button>
+                </form>
+            </div>
+        </section>
+    </div>
 </body>
 </html>
