@@ -22,7 +22,7 @@ body {
 }
 
 .intro {
-    min-height: 400px;
+    min-height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,7 +32,6 @@ body {
     background-position: center;
     position: relative;
     color: #fff;
-    display: flex;
     flex-wrap: wrap;
     gap: 2rem;
     padding: 2rem;
@@ -83,6 +82,97 @@ body {
 .form-wrapper {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.index-signup {
+    border-left: 3px solid var(--btn-color);
+    padding-left: 0.7rem;
+}
+
+.index-signup {
+    flex-basis: 200px;
+}
+
+.index-login {
+    flex-basis: 300px;
+}
+
+.index-signup input {
+    background-color: rgb(232, 235, 239);
+    border: 1px solid rgb(221, 208, 208);
+    border-radius: 10px;
+    padding: 0.2em 0.5em;
+    font-size: 14px;
+}
+
+.form-wrapper h3 {
+    margin-bottom: 0.2em;
+}
+
+.form-wrapper p {
+    line-height: 1.2;
+    font-size: 14px;
+    color: grey;
+}
+
+.index-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+}
+
+.index-login p {
+    color: #fff;
+    text-align: center;
+}
+
+.index-login input {
+    padding: 0.2em 0.5em;
+    font-size: 14px;
+}
+
+.form-wrapper input::placeholder {
+    font-size: 14px;
+}
+
+
+.signup-form,
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    margin-top: 0.5em;
+}
+
+.login-form {
     align-items: center;
 }
 
+.signup-form > *,
+.login-form > * {
+    margin-bottom: 0.8rem;
+}
+
+.submit-btn {
+    background-color: var(--btn-color);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    padding: 0.2em;
+    width: 100px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .index-signup {
+        margin-right: 50px;
+    }
+}

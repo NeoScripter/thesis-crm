@@ -24,23 +24,23 @@
         </section>
         <section class="form-wrapper">
             <div class="index-signup">
-                <h3>Sign up</h3>
-                <p>Don't have an account yet? Sign up here!</p>
+                <h3>Зарегистрироваться</h3>
+                <p>Введите ваши данные для регистрации</p>
                 <form action="includes/signup.inc.php" method="post" class="signup-form">
                     <input type="text" name="uid" placeholder="Имя">
                     <input type="password" name="pwd" placeholder="Пароль">
                     <input type="password" name="pwdrepeat" placeholder="Повторите пароль">
                     <input type="email" name="email" placeholder="Емаил">
-                    <button type="submit" name="submit">SIGN UP</button>
+                    <button type="submit" name="submit" class="submit-btn">Создать</button>
                 </form>
             </div>
             <div class="index-login">
-                <h3>Log in</h3>
-                <p>Don't have an account yet? Sign up here!</p>
-                <form action="includes/signup.inc.php" method="post" class="signup-form">
+                <h3>Войти</h3>
+                <p>Нет аккаунта? Создайте учетную запись!</p>
+                <form action="includes/signup.inc.php" method="post" class="login-form">
                     <input type="text" name="uid" placeholder="Имя">
                     <input type="password" name="pwd" placeholder="Пароль">
-                    <button type="submit" name="submit">SIGN UP</button>
+                    <button type="submit" name="submit" class="submit-btn">Войти</button>
                 </form>
             </div>
         </section>
