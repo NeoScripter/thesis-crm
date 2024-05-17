@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +41,7 @@
             <div class="index-login">
                 <h3>Войти</h3>
                 <p>Нет аккаунта? Создайте учетную запись!</p>
-                <form action="includes/signup.inc.php" method="post" class="login-form">
+                <form action="includes/login.inc.php" method="post" class="login-form">
                     <input type="text" name="uid" placeholder="Имя">
                     <input type="password" name="pwd" placeholder="Пароль">
                     <button type="submit" name="submit" class="submit-btn">Войти</button>

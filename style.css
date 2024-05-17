@@ -21,6 +21,8 @@ body {
     font-family: 'Roboto Regular';
 }
 
+/* Index page */
+
 .intro {
     min-height: 300px;
     display: flex;
@@ -169,6 +171,48 @@ body {
     padding: 0.2em;
     width: 100px;
     cursor: pointer;
+}
+
+/* Account page */
+
+.account-header {
+    min-height: 70px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.menu-member {
+    display: flex;
+    align-items: center;
+}
+
+.menu-member li {
+    list-style: none;
+    margin-right: 30px;
+}
+
+.header-logout,
+.header-username {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.header-logout {
+    background-color: var(--btn-color);
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+.login-success {
+    font-weight: 700;
+    color: green;
 }
 
 @media screen and (max-width: 600px) {
