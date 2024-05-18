@@ -1,10 +1,10 @@
 <?php 
 
-if (isset($_POST["submit"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Grabbing the date
-    $uid = $_POST['uid'];
-    $pwd = $_POST['pwd'];
+    $uid = htmlspecialchars($_POST['uid'], ENT_QUOTES, 'UTF-8');
+    $pwd = htmlspecialchars($_POST['pwd'], ENT_QUOTES, 'UTF-8');
 
     // Instantiate SignupContr class
     include "../classes/dbh.classes.php";

@@ -228,6 +228,65 @@ body {
     z-index: 5;
 }
 
+.profile-settings-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 6;
+    background-color: black;
+    padding: 2vw;
+    border-radius: 7px;
+}
+
+.profile-settings-wrapper form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1vw;
+    margin-top: 1vw;
+}
+
+.profile-settings-wrapper form button {
+    background-color: var(--btn-color);
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    padding: 0.2em 0.5em;
+    cursor: pointer;
+}
+
+.profile-settings-wrapper form input {
+    border-radius: 7px;
+    padding: 0.2em 0.5em;
+    font-size: 14px;
+}
+
+.profile-bg {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(assets/images/office-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: #fff;
+}
+
+.profile-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(59, 56, 63, 0.95);
+    z-index: 5;
+}
+
 .profile-wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -273,6 +332,7 @@ body {
     border-radius: 10px;
     padding: 0.2em 0.4em;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .profile-info .top {

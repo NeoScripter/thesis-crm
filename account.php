@@ -1,5 +1,10 @@
 <?php 
     session_start();
+    include "classes/dbh.classes.php";
+    include "classes/profileinfo.classes.php";
+    include "classes/profileinfo-view.classes.php";
+
+    $profileInfo = new ProfileInfoView();
 ?>
 
 <!DOCTYPE html>
@@ -21,13 +26,25 @@
             </div>
             <div class="profile-info">
                 <div class="top">
-                    <div class="profile-settings">Настройки</div>
+                    <a href="profilesettings.php" class="profile-settings">Настройки</a>
                     <div class="profile-img-wrapper"><img src="assets/images/man-stock.jpeg" alt="Minion" class="profile-img"></div>
                 </div>
                 <ul>
-                    <li>Фамилия</li>
-                    <li>Имя</li>
-                    <li>Отчество</li>
+                    <li>
+                        <?php
+                        $profileInfo->fetchLastName($_SESSION["userid"]);
+                        ?>
+                    </li>
+                    <li>
+                        <?php
+                        $profileInfo->fetchFirstName($_SESSION["userid"]);
+                        ?>
+                    </li>
+                    <li>
+                        <?php
+                        $profileInfo->fetchPatronymic($_SESSION["userid"]);
+                        ?>
+                    </li>
                 </ul>
             </div>
             <div class="profile-orders">
@@ -37,3 +54,4 @@
     </div>
     <p class="login-success">Successful login!</p>
 </body>
+</html>
