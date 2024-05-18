@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    $code_field = isset($_SESSION["code-verified"]) ? 'flex' : 'none';
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +24,7 @@
             </div>
             <div class="intro-header">
                 <h1 class="intro-h1">Система контакта с клиентами</h1>
-                <div class="logo">Быстро и удобно!</div>
+                <div class="switch-user">Для заказчиков</div>
             </div>
         </section>
         <section class="form-wrapper">
@@ -47,6 +48,18 @@
                     <button type="submit" name="submit" class="submit-btn">Войти</button>
                 </form>
             </div>
+        </section>
+        <section class="order-wrapper">
+            <form action="" class="index-order" method="post">
+                <h3>Оставить заявку</h3>
+                <input type="email" name="email" placeholder="Емаил">
+                <button type="submit" name="submit" class="submit-btn">Отправить</button>
+            </form>
+            <form action="" class="code-verify" method="post" style="<?php echo 'display: ' . $code_field; ?>">
+                <p>На указанный вами емаил отправлен 6-значный код. Введите его в поле снизу</p>
+                <input type="number" name="code" placeholder="Код">
+                <button type="submit" name="submit" class="submit-btn">Подтвердить</button>
+            </form>
         </section>
     </div>
 </body>
