@@ -1,6 +1,9 @@
 <?php 
     session_start();
     $code_field = isset($_SESSION["code-verified"]) ? 'flex' : 'none';
+    $login_errors = isset($_SESSION["login_errors"]) ? $_SESSION["login_errors"] : '';
+    $signup_errors = isset($_SESSION["signup_errors"]) ? $_SESSION["signup_errors"] : '';    
+    unset($_SESSION["code-verified"], $_SESSION["login_errors"], $_SESSION["signup_errors"]);
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +39,7 @@
                     <input type="password" name="pwd" placeholder="Пароль">
                     <input type="password" name="pwdrepeat" placeholder="Повторите пароль">
                     <input type="email" name="email" placeholder="Емаил">
+                    <p class="errors-signup"><?php echo $signup_errors ;?></p>
                     <button type="submit" name="submit" class="submit-btn">Создать</button>
                 </form>
             </div>
@@ -45,6 +49,7 @@
                 <form action="includes/login.inc.php" method="post" class="login-form">
                     <input type="text" name="uid" placeholder="Имя">
                     <input type="password" name="pwd" placeholder="Пароль">
+                    <p class="errors-login"><?php echo $login_errors ;?></p>
                     <button type="submit" name="submit" class="submit-btn">Войти</button>
                 </form>
             </div>

@@ -18,29 +18,30 @@ class SignupContr extends Signup {
     }
 
     public function signupUser() {
+        session_start();
         if ($this->emptyInput() == false) {
-            // echo "Empty input!";
-            header('location: ../index.php?error=emptyInput');
+            $_SESSION["signup_errors"] = "Заполните все поля";
+            header('location: ../index.php');
             exit();
         }
         if ($this->invalidUid() == false) {
-            // echo "Invalid user name!";
-            header('location: ../index.php?error=username');
+            $_SESSION["signup_errors"] = "Используйте только буквы или цифры для имени пользователя";
+            header('location: ../index.php');
             exit();
         }
         if ($this->invalidEmail() == false) {
-            // echo "Invalid email!";
-            header('location: ../index.php?error=email');
+            $_SESSION["signup_errors"] = "Укажите правильный емаил";
+            header('location: ../index.php');
             exit();
         }
         if ($this->pwdMatch() == false) {
-            // echo "Passwords don't match!";
-            header('location: ../index.php?error=passwordmatch');
+            $_SESSION["signup_errors"] = "Пароли должны совпадать";
+            header('location: ../index.php');
             exit();
         }
         if ($this->uidTakenCheck() == false) {
-            // echo "User or email taken!";
-            header('location: ../index.php?error=useroremailtaken');
+            $_SESSION["signup_errors"] = "Данный пользователь уже зарегистрирован";
+            header('location: ../index.php');
             exit();
         }
 

@@ -83,7 +83,7 @@ body {
 }
 
 .form-wrapper {
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
@@ -92,7 +92,7 @@ body {
 }
 
 .order-wrapper {
-    display: flex;
+    display: none;
     justify-content: center;
     padding: 2rem;
 }
@@ -127,6 +127,12 @@ body {
     flex-basis: 300px;
 }
 
+.errors-signup,
+.errors-login {
+    font-size: 14px;
+    color: red;
+}
+
 .index-signup input {
     background-color: rgb(232, 235, 239);
     border: 1px solid rgb(221, 208, 208);
@@ -139,7 +145,7 @@ body {
     margin-bottom: 0.2em;
 }
 
-.form-wrapper p {
+.form-wrapper h3+p {
     line-height: 1.2;
     font-size: 14px;
     color: grey;
@@ -155,7 +161,7 @@ body {
     border-radius: 8px;
 }
 
-.index-login p {
+.index-login h3+p {
     color: #fff;
     text-align: center;
 }

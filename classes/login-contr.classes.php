@@ -11,9 +11,10 @@ class LoginContr extends Login {
     }
 
     public function loginUser() {
+        session_start();
         if ($this->emptyInput() == false) {
-            // echo "Empty input!";
-            header('location: ../index.php?error=emptyInput');
+            $_SESSION["login_errors"] = "Заполните все поля";
+            header('location: ../index.php');
             exit();
         }
 

@@ -7,13 +7,15 @@ class Login extends Dbh {
 
         if (!$stmt->execute(array($uid, $pwd))) {
             $stmt = null;
-            header('location: ../index.php?error=stmtfailed');
+            $_SESSION["login_errors"] = "Не удалось подключиться к базе данных";
+            header('location: ../index.php');
             exit();
         }
 
         if ($stmt->rowCount() == 0) {
             $stmt = null;
-            header('location: ../index.php?error=usernotfound');
+            $_SESSION["login_errors"] = "Данный пользователь не зарегистрирован";
+            header('location: ../index.php');
             exit();
         }
 
@@ -22,20 +24,23 @@ class Login extends Dbh {
         
         if ($checkPwd == false) {
             $stmt = null;
-            header('location: ../index.php?error=wrongpassowrd');
+            $_SESSION["login_errors"] = "Неверный пароль";
+            header('location: ../index.php');
             exit();
         } elseif ($checkPwd == true) {
-            $stmt = $this->connect()->prepare('SELECT * FROM users WHERE users_uid = ? OR users_email = ? AND users_pwd = ?;');
+            $stmt = $this->connect()->prepare('SELECT * FROM users WHERE (users_uid = ? OR users_email = ?) AND users_pwd = ?;');
 
             if (!$stmt->execute(array($uid, $uid, $pwd))) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailed');
+                $_SESSION["login_errors"] = "Не удалось подключиться к базе данных";
+                header('location: ../index.php');
                 exit();
             }
 
             if ($stmt->rowCount() == 0) {
                 $stmt = null;
-                header('location: ../index.php?error=usernotfound');
+                $_SESSION["login_errors"] = "Данный пользователь не зарегистрирован";
+                header('location: ../index.php');
                 exit();
             }
 
