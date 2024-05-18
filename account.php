@@ -27,7 +27,10 @@
             <div class="profile-info">
                 <div class="top">
                     <a href="profilesettings.php" class="profile-settings">Настройки</a>
-                    <div class="profile-img-wrapper"><img src="assets/images/man-stock.jpeg" alt="Minion" class="profile-img"></div>
+                    <div class="profile-img-wrapper"><img class="profile-img" src="<?php
+                        $profileInfo->fetchPicture($_SESSION["userid"]);
+                        ?>" alt="Profile Picture">
+                </div>
                 </div>
                 <ul>
                     <li>

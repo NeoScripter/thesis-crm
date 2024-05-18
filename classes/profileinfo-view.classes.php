@@ -18,4 +18,10 @@ class ProfileInfoView extends ProfileInfo {
 
         echo $profileInfo[0]["profiles_patronymic"];
     }
+
+    public function fetchPicture($userId) {
+        $profileInfo = $this->getProfileInfo($userId);
+
+        echo $profileInfo[0]["profiles_picture"];
+    }
 }

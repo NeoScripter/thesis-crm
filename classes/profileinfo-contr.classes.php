@@ -13,10 +13,11 @@ class ProfileInfoContr extends ProfileInfo {
         $profileFirstName = "Имя";
         $profileLastName = "Фамилия";
         $profilePatronymic = "Отчество";
-        $this->setProfileInfo($profileFirstName, $profileLastName, $profilePatronymic, $this->userId);
+        $profilePicture = "uploads/profile-pics/default-avatar.jpeg";
+        $this->setProfileInfo($profileFirstName, $profileLastName, $profilePatronymic, $profilePicture, $this->userId);
     }
 
-    public function updateProfileInfo($firstName, $lastName, $patronymic) {
+    public function updateProfileInfo($firstName, $lastName, $patronymic, $profilePicture) {
         // Error handlers
         if ($this->emptyInputCheck($firstName, $lastName, $patronymic) == true) {
             header("location: ../profilesettings.php?error=emptyInput");
@@ -24,7 +25,7 @@ class ProfileInfoContr extends ProfileInfo {
         }
 
         // Update profile info
-        $this->setNewProfileInfo($firstName, $lastName, $patronymic, $this->userId);
+        $this->setNewProfileInfo($firstName, $lastName, $patronymic, $profilePicture, $this->userId);
     }
 
     private function emptyInputCheck($firstName, $lastName, $patronymic) {

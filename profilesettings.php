@@ -23,10 +23,11 @@
             <div class="profile-settings-wrapper">
                 <h3>Настройки профиля</h3>
                 <p>Заполните информацию о себе</p>
-                <form action="includes/profileinfo.inc.php" method="post">
+                <form action="includes/profileinfo.inc.php" method="post" enctype="multipart/form-data">
                     <input type="text" name="last-name" placeholder="Фамилия" value="<?php $profileInfo->fetchLastName($_SESSION["userid"]);?>">
                     <input type="text" name="first-name" placeholder="Имя" value="<?php $profileInfo->fetchFirstName($_SESSION["userid"]);?>">
                     <input type="text" name="patronymic" placeholder="Отчество" value="<?php $profileInfo->fetchPatronymic($_SESSION["userid"]);?>">
+                    <input type="file" name="profile-picture">
                     <button type="submit" name="submit">Сохранить</button>
                 </form>
             </div>
