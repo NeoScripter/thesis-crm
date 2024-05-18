@@ -15,5 +15,5 @@ if (isset($_POST["submit"])) {
     // Running error handlers and user signup
     $login->loginUser();
     // Going to back to front page
-    header("location: ../account.php?error=none");
+    header("location: ../account.php");
 }

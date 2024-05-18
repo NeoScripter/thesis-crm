@@ -17,7 +17,7 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="outer-wrapper">
+    <div class="index-outer-wrapper">
         <section class="intro">
             <div class="gif-wrapper">
                 <img src="assets/images/crm-gif.gif" alt="демонстрация работы систему CRM" class="gif-img">

@@ -28,7 +28,7 @@ class Login extends Dbh {
             header('location: ../index.php');
             exit();
         } elseif ($checkPwd == true) {
-            $stmt = $this->connect()->prepare('SELECT * FROM users WHERE (users_uid = ? OR users_email = ?) AND users_pwd = ?;');
+            $stmt = $this->connect()->prepare('SELECT * FROM users WHERE users_uid = ? OR users_email = ? AND users_pwd = ?;');
 
             if (!$stmt->execute(array($uid, $uid, $pwd))) {
                 $stmt = null;

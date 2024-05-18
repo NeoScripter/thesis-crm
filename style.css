@@ -175,7 +175,6 @@ body {
     font-size: 14px;
 }
 
-
 .signup-form,
 .login-form {
     display: flex;
@@ -205,29 +204,90 @@ body {
 
 /* Account page */
 
-.account-header {
-    min-height: 70px;
+.account-outer-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(assets/images/office-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: #fff;
+}
+
+.account-outer-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(59, 56, 63, 0.95);
+    z-index: 5;
+}
+
+.profile-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    z-index: 6;
+    min-width: min(95%, 1000px);
+    min-height: 500px;
+    border-radius: 10px;
+    gap: 2vw;
+}
+
+.profile-info {
     background-color: black;
+    grid-row: span 5;
+    border-radius: inherit;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    flex-direction: column;
+    padding: 1vw;
+    gap: 1vw;
 }
 
-.menu-member {
+.profile-img-wrapper {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.profile-img {
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+}
+
+.profile-header {
+    background-color: black;
+    border-radius: inherit;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    padding-inline: 1rem;
 }
 
-.menu-member li {
-    list-style: none;
-    margin-right: 30px;
+.profile-orders {
+    background-color: #fff;
+    grid-row: span 4;
+    border-radius: inherit;
+}
+
+.profile-header,
+.profile-orders {
+    grid-column: span 3;
 }
 
 .header-logout,
 .header-username {
     color: #fff;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 16px;
 }
 
@@ -236,7 +296,7 @@ body {
     border: none;
     border-radius: 6px;
     color: #fff;
-    padding: 0.5em 1em;
+    padding: 0.2em 0.5em;
     cursor: pointer;
 }
 
@@ -244,6 +304,22 @@ body {
     font-weight: 700;
     color: green;
 }
+
+@media screen and (max-width: 700px) {
+    .profile-wrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: 70px 200px 1fr;
+        min-height: 80vh;
+    }
+    .profile-wrapper > * {
+        grid-row: span 1;
+        grid-column: span 1;
+    }
+    .profile-info {
+        flex-direction: row;
+    }
+}
+
 
 @media screen and (max-width: 600px) {
     .index-signup {

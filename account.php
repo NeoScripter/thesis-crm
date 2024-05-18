@@ -13,11 +13,21 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <header class="account-header">
-        <ul class="menu-member">
-            <li class="header-username"><?php echo 'Привет, ' . $_SESSION["useruid"]; ?></li>
-            <li><a href="includes/logout.inc.php" class="header-logout">Разлогиниться</a></li>
-        </ul>
-    </header>
+    <div class="account-outer-wrapper">
+        <div class="profile-wrapper">
+            <div class="profile-header">
+                <div class="header-username"><?php echo 'Привет, ' . $_SESSION["useruid"]; ?></div>
+                <a href="includes/logout.inc.php" class="header-logout">Выйти</a>
+            </div>
+            <div class="profile-info">
+                <div class="profile-img-wrapper">
+                    <img src="assets/images/minion.jpg" alt="Minion" class="profile-img">
+                </div>
+            </div>
+            <div class="profile-orders">
+
+            </div>
+        </div>
+    </div>
     <p class="login-success">Successful login!</p>
 </body>
