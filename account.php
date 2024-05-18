@@ -20,9 +20,15 @@
                 <a href="includes/logout.inc.php" class="header-logout">Выйти</a>
             </div>
             <div class="profile-info">
-                <div class="profile-img-wrapper">
-                    <img src="assets/images/minion.jpg" alt="Minion" class="profile-img">
+                <div class="top">
+                    <div class="profile-settings">Настройки</div>
+                    <div class="profile-img-wrapper"><img src="assets/images/man-stock.jpeg" alt="Minion" class="profile-img"></div>
                 </div>
+                <ul>
+                    <li>Фамилия</li>
+                    <li>Имя</li>
+                    <li>Отчество</li>
+                </ul>
             </div>
             <div class="profile-orders">
 

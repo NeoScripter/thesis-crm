@@ -247,7 +247,6 @@ body {
     align-items: center;
     flex-direction: column;
     padding: 1vw;
-    gap: 1vw;
 }
 
 .profile-img-wrapper {
@@ -255,12 +254,32 @@ body {
     height: 100px;
     overflow: hidden;
     border-radius: 50%;
+    margin-block: 10px;
+}
+
+.profile-info ul li {
+    list-style: none;
 }
 
 .profile-img {
     object-fit: cover;
     object-position: top;
     width: 100%;
+}
+
+.profile-settings {
+    background-color: #fff;
+    color: black;
+    border-radius: 10px;
+    padding: 0.2em 0.4em;
+    cursor: pointer;
+}
+
+.profile-info .top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .profile-header {
@@ -317,6 +336,12 @@ body {
     }
     .profile-info {
         flex-direction: row;
+    }
+    .profile-info ul {
+        margin-left: 10px;
+    }
+    .profile-img-wrapper {
+        margin-inline: 10px;
     }
 }
 
