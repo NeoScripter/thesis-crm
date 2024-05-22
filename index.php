@@ -4,6 +4,10 @@
     $login_errors = isset($_SESSION["login_errors"]) ? $_SESSION["login_errors"] : '';
     $signup_errors = isset($_SESSION["signup_errors"]) ? $_SESSION["signup_errors"] : '';    
     unset($_SESSION["code-verified"], $_SESSION["login_errors"], $_SESSION["signup_errors"]);
+    
+    $switch_btn = 'Для заказчиков';
+    $display_signup = ($_SESSION['display_signup']) ? 'flex' : 'none';
+    $display_order = ($_SESSION['display_signup']) ? 'none' : 'flex';
 ?>
 
 <!DOCTYPE html>
@@ -27,10 +31,12 @@
             </div>
             <div class="intro-header">
                 <h1 class="intro-h1">Система контакта с клиентами</h1>
-                <div class="switch-user">Для заказчиков</div>
+                <form action="redirect.php" method="post">
+                    <button type="submit" class="switch-user" name="switch-user"><?php echo $switch_btn ;?></button>
+                </form>
             </div>
         </section>
-        <section class="form-wrapper">
+        <section class="form-wrapper" style="display: <?php echo $display_signup ;?>">
             <div class="index-signup">
                 <h3>Зарегистрироваться</h3>
                 <p>Введите ваши данные для регистрации</p>
@@ -54,7 +60,7 @@
                 </form>
             </div>
         </section>
-        <section class="order-wrapper">
+        <section class="order-wrapper" style="display: <?php echo $display_order ;?>">
             <form action="" class="index-order" method="post">
                 <h3>Оставить заявку</h3>
                 <input type="email" name="email" placeholder="Емаил">

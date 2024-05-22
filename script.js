@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* document.addEventListener('DOMContentLoaded', () => {
     const userSwitchBtn = document.querySelector('.switch-user');
     const formWrapper = document.querySelector('.form-wrapper');
     const orderWrapper = document.querySelector('.order-wrapper');
@@ -13,4 +13,4 @@ document.addEventListener('DOMContentLoaded', () => {
             userSwitchBtn.textContent = 'Для заказчиков';
         }
     });
-});
+}); */
