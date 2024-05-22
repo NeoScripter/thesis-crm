@@ -1,11 +1,13 @@
 <?php 
     session_start();
-    $code_field = isset($_SESSION["code-verified"]) ? 'flex' : 'none';
+    $code_field = isset($_SESSION["under-verification"]) ? 'flex' : 'none';
+    $email_field = ($code_field === 'flex') ? 'none' : 'flex';
     $login_errors = isset($_SESSION["login_errors"]) ? $_SESSION["login_errors"] : '';
-    $signup_errors = isset($_SESSION["signup_errors"]) ? $_SESSION["signup_errors"] : '';    
-    unset($_SESSION["code-verified"], $_SESSION["login_errors"], $_SESSION["signup_errors"]);
+    $signup_errors = isset($_SESSION["signup_errors"]) ? $_SESSION["signup_errors"] : '';
+    $email_errors = isset($_SESSION["email_errors"]) ? $_SESSION["email_errors"] : '';   
+    unset($_SESSION["under-verification"], $_SESSION["login_errors"], $_SESSION["signup_errors"], $_SESSION["email_errors"]);
     
-    $switch_btn = 'Для заказчиков';
+    $switch_btn = ($_SESSION['display_signup']) ? 'Для заказчиков' : 'Для клиентов';
     $display_signup = ($_SESSION['display_signup']) ? 'flex' : 'none';
     $display_order = ($_SESSION['display_signup']) ? 'none' : 'flex';
 ?>
@@ -31,7 +33,7 @@
             </div>
             <div class="intro-header">
                 <h1 class="intro-h1">Система контакта с клиентами</h1>
-                <form action="redirect.php" method="post">
+                <form action="includes/redirect.php" method="post">
                     <button type="submit" class="switch-user" name="switch-user"><?php echo $switch_btn ;?></button>
                 </form>
             </div>
@@ -44,7 +46,7 @@
                     <input type="text" name="uid" placeholder="Имя">
                     <input type="password" name="pwd" placeholder="Пароль">
                     <input type="password" name="pwdrepeat" placeholder="Повторите пароль">
-                    <input type="email" name="email" placeholder="Емаил">
+                    <input type="email" name="email" placeholder="Email">
                     <p class="errors-signup"><?php echo $signup_errors ;?></p>
                     <button type="submit" name="submit" class="submit-btn">Создать</button>
                 </form>
@@ -61,14 +63,16 @@
             </div>
         </section>
         <section class="order-wrapper" style="display: <?php echo $display_order ;?>">
-            <form action="" class="index-order" method="post">
+            <form action="includes/send_email.php" class="index-order" method="post" style="<?php echo 'display: ' . $email_field; ?>">
                 <h3>Оставить заявку</h3>
-                <input type="email" name="email" placeholder="Емаил">
+                <input type="email" name="email" placeholder="Email">
+                <p class="errors-signup"><?php echo $email_errors ;?></p>
                 <button type="submit" name="submit" class="submit-btn">Отправить</button>
             </form>
-            <form action="" class="code-verify" method="post" style="<?php echo 'display: ' . $code_field; ?>">
-                <p>На указанный вами емаил отправлен 6-значный код. Введите его в поле снизу</p>
+            <form action="includes/verify_email.php" class="code-verify" method="post" style="<?php echo 'display: ' . $code_field; ?>">
+                <p>На указанный вами email<br> отправлен 6-значный код.<br> Введите его в поле снизу</p>
                 <input type="number" name="code" placeholder="Код">
+                <p class="errors-signup"><?php echo $email_errors ;?></p>
                 <button type="submit" name="submit" class="submit-btn">Подтвердить</button>
             </form>
         </section>
