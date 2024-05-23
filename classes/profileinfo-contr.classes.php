@@ -13,7 +13,7 @@ class ProfileInfoContr extends ProfileInfo {
         $profileFirstName = "Имя";
         $profileLastName = "Фамилия";
         $profilePatronymic = "Отчество";
-        $profilePicture = "uploads/profile-pics/default-avatar.jpeg";
+        $profilePicture = "assets/images/default-avatar.png";
         $this->setProfileInfo($profileFirstName, $profileLastName, $profilePatronymic, $profilePicture, $this->userId);
     }
 

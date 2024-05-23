@@ -6,6 +6,10 @@
     $signup_errors = isset($_SESSION["signup_errors"]) ? $_SESSION["signup_errors"] : '';
     $email_errors = isset($_SESSION["email_errors"]) ? $_SESSION["email_errors"] : '';   
     unset($_SESSION["under-verification"], $_SESSION["login_errors"], $_SESSION["signup_errors"], $_SESSION["email_errors"]);
+
+    if (!isset($_SESSION['display_signup'])) {
+        $_SESSION['display_signup'] = true;
+    }
     
     $switch_btn = ($_SESSION['display_signup']) ? 'Для заказчиков' : 'Для клиентов';
     $display_signup = ($_SESSION['display_signup']) ? 'flex' : 'none';

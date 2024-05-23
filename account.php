@@ -27,28 +27,31 @@
             <div class="profile-info">
                 <div class="top">
                     <a href="profilesettings.php" class="profile-settings">Настройки</a>
+                </div>
+                <div class="user-info">
                     <div class="profile-img-wrapper"><img class="profile-img" src="<?php
-                        $profileInfo->fetchPicture($_SESSION["userid"]);
-                        ?>" alt="Profile Picture">
+                            $profileInfo->fetchPicture($_SESSION["userid"]);
+                            ?>" alt="Profile Picture">
+                    </div>
+                    <ul class="account-info-ul">
+                        <li class="account-info-li">
+                            <?php
+                            $profileInfo->fetchLastName($_SESSION["userid"]);
+                            ?>
+                        </li>
+                        <li class="account-info-li">
+                            <?php
+                            $profileInfo->fetchFirstName($_SESSION["userid"]);
+                            ?>
+                        </li>
+                        <li class="account-info-li">
+                            <?php
+                            $profileInfo->fetchPatronymic($_SESSION["userid"]);
+                            ?>
+                        </li>
+                    </ul>
                 </div>
-                </div>
-                <ul>
-                    <li>
-                        <?php
-                        $profileInfo->fetchLastName($_SESSION["userid"]);
-                        ?>
-                    </li>
-                    <li>
-                        <?php
-                        $profileInfo->fetchFirstName($_SESSION["userid"]);
-                        ?>
-                    </li>
-                    <li>
-                        <?php
-                        $profileInfo->fetchPatronymic($_SESSION["userid"]);
-                        ?>
-                    </li>
-                </ul>
+                <div class="specialty">Специалист по металлу</div>
             </div>
             <div class="profile-orders">
 

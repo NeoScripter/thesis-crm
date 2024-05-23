@@ -13,26 +13,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lastName = htmlspecialchars($_POST["last-name"], ENT_QUOTES, "UTF-8");
     $patronymic = htmlspecialchars($_POST["patronymic"], ENT_QUOTES, "UTF-8");
 
-    $fileTmpPath = $_FILES['profile-picture']['tmp_name'];
-    $fileName = $_FILES['profile-picture']['name'];
-    $fileSize = $_FILES['profile-picture']['size'];
-    $fileType = $_FILES['profile-picture']['type'];
-    $fileNameCmps = explode(".", $fileName);
-    $fileExtension = strtolower(end($fileNameCmps));
+    $path;
+    if (isset($_FILES['profile-picture']) && $_FILES['profile-picture']['error'] == UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['profile-picture']['tmp_name'];
+        $fileName = $_FILES['profile-picture']['name'];
+    
+        $uploadFileDir = '../uploads/profile-pics/';
+        if (!is_dir($uploadFileDir)) {
+            mkdir($uploadFileDir, 0777, true);
+        }
+    
+        $dest_path = $uploadFileDir . $fileName;
 
-    // Sanitize file name
-    $newProfilePicture = bin2hex(random_bytes(16)) . '.' . $fileExtension;
-
-    // Directory in which the uploaded file will be moved
-    $uploadFileDir = '../uploads/profile-pics/';
-    if (!is_dir($uploadFileDir)) {
-        mkdir($uploadFileDir, 0777, true);
+        if (!file_exists($dest_path)) {
+            move_uploaded_file($fileTmpPath, $dest_path);
+        }
+        $path = 'uploads/profile-pics/' . $fileName;
+    } else {
+        $path = 'assets/images/' . 'default-avatar.png';
     }
-
-    $dest_path = $uploadFileDir . $newProfilePicture;
-    $path = 'uploads/profile-pics/' . $newProfilePicture;
-
-    move_uploaded_file($fileTmpPath, $dest_path);
 
     include "../classes/dbh.classes.php";
     include "../classes/profileinfo.classes.php";

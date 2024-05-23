@@ -64,7 +64,7 @@ class Dbh {
     }
 }
 
-class UserData extends Dbh {
+class DbhHandler extends Dbh {
     public function getUsers() {
         $sql = "SELECT * FROM users";
         $stmt = $this->connect()->prepare($sql);
@@ -93,5 +93,10 @@ class UserData extends Dbh {
         return $stmt->fetch();
     }
     
-    
+    function getAllProfilePictures() {
+        $sql = "SELECT profiles_picture FROM profiles WHERE profiles_picture IS NOT NULL";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
 }
