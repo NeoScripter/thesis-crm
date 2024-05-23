@@ -41,19 +41,20 @@ class Dbh {
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
-            $createTableItems = "CREATE TABLE IF NOT EXISTS profiles (
+            $createTableProfilers = "CREATE TABLE IF NOT EXISTS profiles (
                 profiles_id int NOT NULL AUTO_INCREMENT,
                 profiles_firstname TEXT NOT NULL,
                 profiles_lastname TEXT NOT NULL,
                 profiles_patronymic TEXT NOT NULL,
                 profiles_picture TEXT NOT NULL,
+                profiles_material TEXT NOT NULL,
                 users_id int,
                 PRIMARY KEY (profiles_id),
                 FOREIGN KEY (users_id) REFERENCES users(users_id)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
             $dbh->exec($createTableUsers);
-            $dbh->exec($createTableItems);
+            $dbh->exec($createTableProfilers);
 
             return $dbh;
 
@@ -93,10 +94,4 @@ class DbhHandler extends Dbh {
         return $stmt->fetch();
     }
     
-    function getAllProfilePictures() {
-        $sql = "SELECT profiles_picture FROM profiles WHERE profiles_picture IS NOT NULL";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_COLUMN);
-    }
 }

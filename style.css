@@ -273,7 +273,7 @@ body {
     border-bottom: 1.5px solid rgb(0,0,0,0.5);
     color: black;
     font-weight: 500;
-    padding: 0.2em 0.5em;
+    text-align: center;
 }
 
 .profile-settings-wrapper form {
@@ -294,7 +294,8 @@ body {
     cursor: pointer;
 }
 
-.profile-settings-wrapper form input {
+.profile-settings-wrapper form input,
+.profile-settings-wrapper form select {
     border-radius: 7px;
     padding: 0.2em 0.5em;
     font-size: 14px;

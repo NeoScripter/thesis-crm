@@ -3,15 +3,17 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo "<pre>";
-    print_r($_FILES);
-    echo "</pre>";
 
     $id = $_SESSION["userid"];
     $uid = $_SESSION["useruid"];
     $firstName = htmlspecialchars($_POST["first-name"], ENT_QUOTES, "UTF-8");
     $lastName = htmlspecialchars($_POST["last-name"], ENT_QUOTES, "UTF-8");
     $patronymic = htmlspecialchars($_POST["patronymic"], ENT_QUOTES, "UTF-8");
+    $material = htmlspecialchars($_POST["material"], ENT_QUOTES, "UTF-8");
+    
+    if (strtolower($material) != 'металл' && strtolower($material) != 'дерево') {
+        $material = 'металл';
+    }
 
     $path;
     if (isset($_FILES['profile-picture']) && $_FILES['profile-picture']['error'] == UPLOAD_ERR_OK) {
@@ -39,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $profileInfo = new ProfileInfoContr($id, $uid);
 
-    $profileInfo->updateProfileInfo($firstName, $lastName, $patronymic, $path);
+    $profileInfo->updateProfileInfo($firstName, $lastName, $patronymic, $path, $material);
 
     header("location: ../account.php");
 }

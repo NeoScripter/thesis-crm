@@ -21,10 +21,10 @@ class ProfileInfo extends Dbh {
         return $profileData;
     }
 
-    protected function setNewProfileInfo($profileFirstName, $profileLastName, $profilePatronymic, $profilePicture, $userId) {
-        $stmt = $this->connect()->prepare('UPDATE profiles SET profiles_firstname = ?, profiles_lastname = ?, profiles_patronymic = ?, profiles_picture = ? WHERE users_id = ?;');
+    protected function setNewProfileInfo($profileFirstName, $profileLastName, $profilePatronymic, $profilePicture, $profileMaterial, $userId) {
+        $stmt = $this->connect()->prepare('UPDATE profiles SET profiles_firstname = ?, profiles_lastname = ?, profiles_patronymic = ?, profiles_picture = ?, profiles_material = ? WHERE users_id = ?;');
 
-        if (!$stmt->execute(array($profileFirstName, $profileLastName, $profilePatronymic, $profilePicture, $userId))) {
+        if (!$stmt->execute(array($profileFirstName, $profileLastName, $profilePatronymic, $profilePicture, $profileMaterial, $userId))) {
             $stmt = null;
             header("location: profile.php?error=stmtfailed");
             exit();
@@ -33,10 +33,10 @@ class ProfileInfo extends Dbh {
         $stmt = null;
     }
 
-    protected function setProfileInfo($profileFirstName, $profileLastName, $profilePatronymic, $profilePicture, $userId) {
-        $stmt = $this->connect()->prepare('INSERT INTO profiles (profiles_firstname, profiles_lastname, profiles_patronymic, profiles_picture, users_id) VALUES (?, ?, ?, ?, ?);');
+    protected function setProfileInfo($profileFirstName, $profileLastName, $profilePatronymic, $profilePicture, $profileMaterial, $userId) {
+        $stmt = $this->connect()->prepare('INSERT INTO profiles (profiles_firstname, profiles_lastname, profiles_patronymic, profiles_picture, profiles_material, users_id) VALUES (?, ?, ?, ?, ?, ?);');
 
-        if (!$stmt->execute(array($profileFirstName, $profileLastName, $profilePatronymic, $profilePicture, $userId))) {
+        if (!$stmt->execute(array($profileFirstName, $profileLastName, $profilePatronymic, $profilePicture, $profileMaterial, $userId))) {
             $stmt = null;
             header("location: profile.php?error=stmtfailed");
             exit();

@@ -14,23 +14,24 @@ class ProfileInfoContr extends ProfileInfo {
         $profileLastName = "Фамилия";
         $profilePatronymic = "Отчество";
         $profilePicture = "assets/images/default-avatar.png";
-        $this->setProfileInfo($profileFirstName, $profileLastName, $profilePatronymic, $profilePicture, $this->userId);
+        $profileMaterial = "металл";
+        $this->setProfileInfo($profileFirstName, $profileLastName, $profilePatronymic, $profilePicture, $profileMaterial, $this->userId);
     }
 
-    public function updateProfileInfo($firstName, $lastName, $patronymic, $profilePicture) {
+    public function updateProfileInfo($firstName, $lastName, $patronymic, $picture, $material) {
         // Error handlers
-        if ($this->emptyInputCheck($firstName, $lastName, $patronymic) == true) {
+        if ($this->emptyInputCheck($firstName, $lastName, $patronymic, $material) == true) {
             header("location: ../profilesettings.php?error=emptyInput");
             exit();
         }
 
         // Update profile info
-        $this->setNewProfileInfo($firstName, $lastName, $patronymic, $profilePicture, $this->userId);
+        $this->setNewProfileInfo($firstName, $lastName, $patronymic, $picture, $material, $this->userId);
     }
 
-    private function emptyInputCheck($firstName, $lastName, $patronymic) {
+    private function emptyInputCheck($firstName, $lastName, $patronymic, $material) {
         $result;
-        if (empty($firstName) || empty($lastName) || empty($patronymic)) {
+        if (empty($firstName) || empty($lastName) || empty($patronymic) || empty($material)) {
             $result = true;
         } else {
             $result = false;

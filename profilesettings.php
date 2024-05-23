@@ -5,6 +5,7 @@
     include "classes/profileinfo-view.classes.php";
 
     $profileInfo = new ProfileInfoView();
+    $material = $profileInfo->fetchMaterial($_SESSION["userid"]);
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +28,10 @@
                     <input type="text" name="last-name" placeholder="Фамилия" value="<?php $profileInfo->fetchLastName($_SESSION["userid"]);?>">
                     <input type="text" name="first-name" placeholder="Имя" value="<?php $profileInfo->fetchFirstName($_SESSION["userid"]);?>">
                     <input type="text" name="patronymic" placeholder="Отчество" value="<?php $profileInfo->fetchPatronymic($_SESSION["userid"]);?>">
+                    <select name="material">
+                        <option value="металл" <?php echo ($material == 'металл') ? 'selected' : ''; ?>>Металл</option>
+                        <option value="дерево" <?php echo ($material == 'дерево') ? 'selected' : ''; ?>>Дерево</option>
+                    </select>
                     <input type="file" name="profile-picture">
                     <button type="submit" name="submit">Сохранить</button>
                 </form>

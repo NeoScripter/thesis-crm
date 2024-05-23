@@ -51,7 +51,10 @@
                         </li>
                     </ul>
                 </div>
-                <div class="specialty">Специалист по металлу</div>
+                <div class="specialty">Специализация: <?php 
+                    echo $profileInfo->fetchMaterial($_SESSION["userid"]); 
+                    ?>
+                </div>
             </div>
             <div class="profile-orders">
 
