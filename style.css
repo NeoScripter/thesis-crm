@@ -328,7 +328,6 @@ body {
 .profile-wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
     z-index: 6;
     min-width: min(95%, 1000px);
     min-height: 500px;
@@ -422,10 +421,9 @@ body {
     color: green;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
     .profile-wrapper {
         grid-template-columns: 1fr;
-        grid-template-rows: 70px 200px 1fr;
         min-height: 80vh;
     }
     .profile-wrapper > * {
@@ -444,11 +442,11 @@ body {
     .user-info {
         gap: 0;
     }
-}
-
-
-@media screen and (max-width: 600px) {
+    .specialty {
+        max-width: 215px;
+    }
     .index-signup {
         margin-right: 50px;
     }
 }
+
