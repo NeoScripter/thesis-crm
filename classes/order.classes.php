@@ -23,12 +23,6 @@ class OrderInfo extends Dbh {
             exit();
         }
 
-        if ($stmt->rowCount() == 0) {
-            $stmt = null;
-            header("location: profile.php?error=profilenotfound");
-            exit();
-        }
-
         $profileData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $profileData;
