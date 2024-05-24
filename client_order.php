@@ -24,11 +24,11 @@ if (!isset($_SESSION["code-verified"])) {
                 <a href="includes/logout.inc.php" class="svg-exit"><img src="assets/images/close.svg" alt="X"></a>
                 <h3>Заказ</h3>
                 <p>Заполните заявку на заказ</p>
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form id="orderForm" action="includes/order.inc.php" method="post" enctype="multipart/form-data">
                     <label for="name">Введите ваше полное имя</label>
                     <input type="text" name="name" value="">
                     <label for="material">Выберите тип изделия</label>
-                    <select name="material">
+                    <select name="material" onchange="submitForm()">
                         <option value="металл">Металл</option>
                         <option value="дерево">Дерево</option>
                     </select>
@@ -43,8 +43,13 @@ if (!isset($_SESSION["code-verified"])) {
                     </select>
                     <label for="comment">Оставьте комментарий к заказу</label>
                     <textarea id="comment" name="comment" rows="2"></textarea>
-                    <button type="submit" name="submit">Отправить</button>
+                    <button type="submit" name="submitBtn">Отправить</button>
                 </form>
+                <script>
+                    function submitForm() {
+                        document.getElementById('orderForm').submit();
+                    }
+                </script>
             </div>
         </div>
     </section>
