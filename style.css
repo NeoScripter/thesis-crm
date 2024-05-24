@@ -302,6 +302,42 @@ body {
     width: 200px;
 }
 
+.client-order {
+    width: min(100%, 500px);
+    position: relative;
+}
+
+.svg-exit {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 10px;
+    top: 10px;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    display: block;
+}
+
+.client-order form input,
+.client-order form select,
+.client-order form textarea,
+.client-order form {
+    width: 100%;
+}
+
+.client-order form label {
+    margin-right: auto;
+}
+
+.client-order form button {
+    margin-top: 10px;
+}
+
+.client-order form {
+    gap: 5px;
+}
+
 .profile-bg {
     min-height: 100vh;
     display: flex;
@@ -415,11 +451,6 @@ body {
     color: #fff;
     padding: 0.2em 0.5em;
     cursor: pointer;
-}
-
-.login-success {
-    font-weight: 700;
-    color: green;
 }
 
 @media screen and (max-width: 600px) {
