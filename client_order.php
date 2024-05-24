@@ -18,6 +18,8 @@ if (strtolower($material) != 'металл' && strtolower($material) != 'дер�
 }
 $workers = $database->getWorkersByMaterial($material);
 
+$order_creation_errors = isset($_SESSION["order_creation_errors"]) ? $_SESSION["order_creation_errors"] : '';
+unset($_SESSION["order_creation_errors"]);
 ;?>
 
 <!DOCTYPE html>
@@ -39,16 +41,16 @@ $workers = $database->getWorkersByMaterial($material);
                 <p>Заполните заявку на заказ</p>
                 <form id="orderForm" action="includes/order.inc.php" method="post" enctype="multipart/form-data">
                     <label for="name">Введите ваше полное имя</label>
-                    <input type="text" name="name" value="">
+                    <input type="text" name="name">
                     <label for="material">Выберите тип изделия</label>
                     <select name="material" onchange="submitForm()">
                         <option value="металл" <?php echo ($material == 'металл') ? 'selected' : ''; ?>>Металл</option>
                         <option value="дерево" <?php echo ($material == 'дерево') ? 'selected' : ''; ?>>Дерево</option>
                     </select>
                     <label for="item">Укажите название изделия</label>
-                    <input type="text" name="item" value="">
+                    <input type="text" name="item">
                     <label for="drawing">Чертеж изделия</label>
-                    <input type="file" name="drawing" placeholder="Чертеж">
+                    <input type="file" name="drawing">
                     <label for="worker">Выберите исполнителя</label>
                     <select name="worker">
                         <?php 
@@ -59,6 +61,7 @@ $workers = $database->getWorkersByMaterial($material);
                     </select>
                     <label for="comment">Оставьте комментарий к заказу</label>
                     <textarea id="comment" name="comment" rows="2"></textarea>
+                    <p class="errors-signup"><?php echo $order_creation_errors ;?></p>
                     <button type="submit" name="submitBtn">Отправить</button>
                 </form>
                 <script>

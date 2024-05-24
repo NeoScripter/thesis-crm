@@ -1,33 +1,31 @@
-<?php
+<?php 
 
-class OrderInfoView extends OrderInfo {
-    public function fetchFirstName($userId) {
-        $profileInfo = $this->getProfileInfo($userId);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        echo $profileInfo[0]["profiles_firstname"];
-    }
+    // Grabbing the date
+    $uid = htmlspecialchars($_POST['uid'], ENT_QUOTES, 'UTF-8');
+    $pwd = htmlspecialchars($_POST['pwd'], ENT_QUOTES, 'UTF-8');
+    $pwdRepeat = htmlspecialchars($_POST['pwdrepeat'], ENT_QUOTES, 'UTF-8');
+    $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
 
-    public function fetchLastName($userId) {
-        $profileInfo = $this->getProfileInfo($userId);
+    // Instantiate SignupContr class
+    include "../classes/dbh.classes.php";
+    include "../classes/signup.classes.php";
+    include "../classes/signup-contr.classes.php";
+    $signup = new SignupContr($uid, $pwd, $pwdRepeat, $email);
 
-        echo $profileInfo[0]["profiles_lastname"];
-    }
+    // Running error handlers and user signup
+    $signup->signupUser();
 
-    public function fetchPatronymic($userId) {
-        $profileInfo = $this->getProfileInfo($userId);
+    $userId = $signup->fetchUserId($uid);
 
-        echo $profileInfo[0]["profiles_patronymic"];
-    }
+    // Instantiate ProfileInfoContr class
+    include "../classes/profileinfo.classes.php";
+    include "../classes/profileinfo-contr.classes.php";
+    $profileInfo = new ProfileInfoContr($userId, $uid);
 
-    public function fetchPicture($userId) {
-        $profileInfo = $this->getProfileInfo($userId);
+    $profileInfo->defaultProfileInfo();
 
-        echo $profileInfo[0]["profiles_picture"];
-    }
-
-    public function fetchMaterial($userId) {
-        $profileInfo = $this->getProfileInfo($userId);
-
-        return $profileInfo[0]["profiles_material"];
-    }
+    // Going to back to front page
+    header("location: ../index.php");
 }

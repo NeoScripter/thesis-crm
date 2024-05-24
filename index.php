@@ -14,6 +14,12 @@
     $switch_btn = ($_SESSION['display_signup']) ? 'Для заказчиков' : 'Для клиентов';
     $display_signup = ($_SESSION['display_signup']) ? 'flex' : 'none';
     $display_order = ($_SESSION['display_signup']) ? 'none' : 'flex';
+
+    if (isset($_SESSION['order_submitted'])) {
+        echo '<script>alert("Ваша заявка успешно отправлена!")</script>';
+        session_unset();
+        session_destroy();
+    }
 ?>
 
 <!DOCTYPE html>

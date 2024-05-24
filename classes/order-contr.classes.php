@@ -1,40 +1,53 @@
 <?php
 
 class OrderInfoContr extends OrderInfo {
-    private $userId;
-    private $userUid;
+    private $name;
+    private $item_material;
+    private $item_description;
+    private $item_image;
+    private $worker_id;
+    private $item_comment;
 
-    public function __construct($userId, $userUid) {
-        $this->userId = $userId;
-        $this->userUid = $userUid;
+    public function __construct($name, $item_material, $item_description, $item_image, $worker_id, $item_comment) {
+        $this->name = $name;
+        $this->item_material = $item_material;
+        $this->item_description = $item_description;
+        $this->item_image = $item_image;
+        $this->worker_id = $worker_id;
+        $this->item_comment = $item_comment;
     }
 
-    public function defaultProfileInfo() {
-        $profileFirstName = "Имя";
-        $profileLastName = "Фамилия";
-        $profilePatronymic = "Отчество";
-        $profilePicture = "assets/images/default-avatar.png";
-        $profileMaterial = "металл";
-        $this->setProfileInfo($profileFirstName, $profileLastName, $profilePatronymic, $profilePicture, $profileMaterial, $this->userId);
-    }
-
-    public function updateProfileInfo($firstName, $lastName, $patronymic, $picture, $material) {
-        // Error handlers
-        if ($this->emptyInputCheck($firstName, $lastName, $patronymic, $material) == true) {
-            header("location: ../profilesettings.php?error=emptyInput");
+    public function submitOrder() {
+        if ($this->emptyInput() == false) {
+            $_SESSION["order_creation_errors"] = "Заполните все поля";
+            header('location: ../client_order.php');
+            exit();
+        }
+        if ($this->invalidName() == false) {
+            $_SESSION["order_creation_errors"] = "Используйте только буквы, цифры или пробелы";
+            header('location: ../client_order.php');
             exit();
         }
 
-        // Update profile info
-        $this->setNewProfileInfo($firstName, $lastName, $patronymic, $picture, $material, $this->userId);
+        $this->verifyOrder($this->name, $this->item_material, $this->item_description, $this->item_image, $this->worker_id, $this->item_comment);
     }
 
-    private function emptyInputCheck($firstName, $lastName, $patronymic, $material) {
+    private function emptyInput() {
         $result;
-        if (empty($firstName) || empty($lastName) || empty($patronymic) || empty($material)) {
-            $result = true;
-        } else {
+        if (empty($this->name) || empty($this->item_description) || empty($this->item_comment)) {
             $result = false;
+        } else {
+            $result = true;
+        }
+        return $result;
+    }
+
+    private function invalidName() {
+        $result;
+        if (!preg_match("/^[a-zA-Z0-9\x{0400}-\x{04FF} ]*$/u", $this->name)) {
+            $result = false;
+        } else {
+            $result = true;
         }
         return $result;
     }
