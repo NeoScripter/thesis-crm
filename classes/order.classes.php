@@ -1,11 +1,11 @@
 <?php
 
 class OrderInfo extends Dbh {
-    protected function verifyOrder($name, $materail, $description, $image, $id, $comment) {
-        $stmt = $this->connect()->prepare('INSERT INTO orders (username, item_material, item_description, item_image, selected_worker, item_comment) VALUES (?, ?, ?, ?, ?, ?);');
+    protected function verifyOrder($name, $phone, $materail, $description, $image, $id, $comment) {
+        $stmt = $this->connect()->prepare('INSERT INTO orders (username, phone, item_material, item_description, item_image, selected_worker, item_comment) VALUES (?, ?, ?, ?, ?, ?, ?);');
 
 
-        if (!$stmt->execute(array($name, $materail, $description, $image, $id, $comment))) {
+        if (!$stmt->execute(array($name, $phone, $materail, $description, $image, $id, $comment))) {
             $stmt = null;
             header('location: ../index.php?error-stmtfailed');
             exit();

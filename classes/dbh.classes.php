@@ -56,6 +56,7 @@ class Dbh {
             $createTableOrders = "CREATE TABLE IF NOT EXISTS orders (
                 order_id int NOT NULL AUTO_INCREMENT,
                 username TEXT NOT NULL,
+                phone TEXT NOT NULL,
                 item_material TEXT NOT NULL,
                 item_description TEXT NOT NULL,
                 item_image TEXT NOT NULL,

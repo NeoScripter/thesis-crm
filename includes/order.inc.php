@@ -5,6 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['submitBtn'])) {
         $name = $_POST['name'];
+        $phone = $_POST['phone'];
         $material = $_POST['material'];
     
         if (strtolower($material) != 'металл' && strtolower($material) != 'дерево') {
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         include "../classes/dbh.classes.php";
         include "../classes/order.classes.php";
         include "../classes/order-contr.classes.php";
-        $order = new OrderInfoContr($name, $material, $item, $path, $worker, $comment);
+        $order = new OrderInfoContr($name, $phone, $material, $item, $path, $worker, $comment);
 
         // Running error handlers and user signup
         $order->submitOrder();

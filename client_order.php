@@ -42,6 +42,8 @@ unset($_SESSION["order_creation_errors"]);
                 <form id="orderForm" action="includes/order.inc.php" method="post" enctype="multipart/form-data">
                     <label for="name">Введите ваше полное имя</label>
                     <input type="text" name="name">
+                    <label for="phone">Введите ваш телефон</label>
+                    <input type="tel" name="phone">
                     <label for="material">Выберите тип изделия</label>
                     <select name="material" onchange="submitForm()">
                         <option value="металл" <?php echo ($material == 'металл') ? 'selected' : ''; ?>>Металл</option>
