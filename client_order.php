@@ -5,6 +5,19 @@ if (!isset($_SESSION["code-verified"])) {
     header("location: index.php");
 } 
 
+if (!isset($_SESSION["material"])) {
+    $_SESSION["material"] = 'металл';
+}
+include "classes/dbh.classes.php";
+$database = new DbhHandler();
+
+$material = $_SESSION["material"];
+    
+if (strtolower($material) != 'металл' && strtolower($material) != 'дерево') {
+    $material = 'металл';
+}
+$workers = $database->getWorkersByMaterial($material);
+
 ;?>
 
 <!DOCTYPE html>
@@ -29,8 +42,8 @@ if (!isset($_SESSION["code-verified"])) {
                     <input type="text" name="name" value="">
                     <label for="material">Выберите тип изделия</label>
                     <select name="material" onchange="submitForm()">
-                        <option value="металл">Металл</option>
-                        <option value="дерево">Дерево</option>
+                        <option value="металл" <?php echo ($material == 'металл') ? 'selected' : ''; ?>>Металл</option>
+                        <option value="дерево" <?php echo ($material == 'дерево') ? 'selected' : ''; ?>>Дерево</option>
                     </select>
                     <label for="item">Укажите название изделия</label>
                     <input type="text" name="item" value="">
@@ -38,8 +51,11 @@ if (!isset($_SESSION["code-verified"])) {
                     <input type="file" name="drawing" placeholder="Чертеж">
                     <label for="worker">Выберите исполнителя</label>
                     <select name="worker">
-                        <option value="металл">Вася</option>
-                        <option value="дерево">Коля</option>
+                        <?php 
+                        foreach($workers as $worker) {
+                            echo '<option value="' . $worker['profiles_id'] . '">' . $worker['profiles_lastname'] . ' ' . $worker['profiles_firstname'] . ' ' . $worker['profiles_patronymic'] . '</option>';
+                        }
+                        ;?>
                     </select>
                     <label for="comment">Оставьте комментарий к заказу</label>
                     <textarea id="comment" name="comment" rows="2"></textarea>

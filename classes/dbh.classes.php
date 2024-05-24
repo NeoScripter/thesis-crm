@@ -100,11 +100,11 @@ class DbhHandler extends Dbh {
         return $stmt->fetchAll();
     }
 
-    public function getCartItem($id) {
-        $sql = "SELECT * FROM items WHERE item_src = ?";
+    public function getWorkersByMaterial($material) {
+        $sql = "SELECT * FROM profiles WHERE profiles_material = ?";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$id]);
-        return $stmt->fetch();
+        $stmt->execute([$material]);
+        return $stmt->fetchAll();
     }
     
 }
