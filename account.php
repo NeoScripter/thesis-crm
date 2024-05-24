@@ -3,8 +3,12 @@
     include "classes/dbh.classes.php";
     include "classes/profileinfo.classes.php";
     include "classes/profileinfo-view.classes.php";
+    include "classes/order.classes.php";
 
     $profileInfo = new ProfileInfoView();
+    $orderInfo = new OrderInfo();
+    $profileId = $profileInfo->fetchId($_SESSION["userid"]);
+    $orders = $orderInfo->getOrderInfo($profileId);
 ?>
 
 <!DOCTYPE html>
@@ -67,12 +71,22 @@
             </div>
             <div class="profile-orders">
                 <div class="profile-order-row">
-                    <div>1 Lorem ipsum dolor. ipsam dolores modi, expedita fuga saepe alias fugit nam dolorum quam impedit voluptatum sit error.</div>
-                    <div>sit amet consectetur adipisicing elit</div>
-                    <div>sit amet consectetur adipisicing elit</div>
-                    <div>Excepturi commodi, nobis neque architecto ea illum</div>
-                    <div>2</div>
-                    <div>2</div>
+                    <div>Имя</div>
+                    <div>Телефон</div>
+                    <div>Название изделие</div>
+                    <div>Чертеж</div>
+                    <div>Комментарий</div>
+                </div>
+                <div class="profile-order-row">
+                    <?php 
+                    foreach($orders as $order) {
+                        echo '<div>' . $order['username'] . '</div>';
+                        echo '<div>' . $order['phone'] . '</div>';
+                        echo '<div>' . $order['item_description'] . '</div>';
+                        echo '<div>' . '<img src="' . $order["item_image"] . '" alt="drawing" class="order-drawing">' . '</div>';
+                        echo '<div>' . $order['item_comment'] . '</div>';
+                    }
+                    ;?>
                 </div>
             </div>
         </div>

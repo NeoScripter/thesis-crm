@@ -30,4 +30,10 @@ class ProfileInfoView extends ProfileInfo {
 
         return $profileInfo[0]["profiles_material"];
     }
+
+    public function fetchId($userId) {
+        $profileInfo = $this->getProfileInfo($userId);
+
+        return $profileInfo[0]["profiles_id"];
+    }
 }

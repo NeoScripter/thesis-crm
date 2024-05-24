@@ -62,6 +62,7 @@ class Dbh {
                 item_image TEXT NOT NULL,
                 item_comment TEXT NOT NULL,
                 selected_worker int,
+                created_at DATE DEFAULT CURRENT_DATE,
                 PRIMARY KEY (order_id),
                 FOREIGN KEY (selected_worker) REFERENCES profiles(profiles_id)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";

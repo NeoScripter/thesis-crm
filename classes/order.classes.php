@@ -13,11 +13,11 @@ class OrderInfo extends Dbh {
         
         $stmt = null;
     }
-    
-    protected function getOrderById($id) {
+
+    public function getOrderInfo($profileId) {
         $stmt = $this->connect()->prepare('SELECT * FROM orders WHERE selected_worker = ?;');
 
-        if (!$stmt->execute(array($id))) {
+        if (!$stmt->execute(array($profileId))) {
             $stmt = null;
             header("location: profile.php?error=stmtfailed");
             exit();
@@ -29,8 +29,8 @@ class OrderInfo extends Dbh {
             exit();
         }
 
-        $orderData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $profileData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $orderData;
+        return $profileData;
     }
 }
