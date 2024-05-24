@@ -55,12 +55,27 @@
                     echo $profileInfo->fetchMaterial($_SESSION["userid"]); 
                     ?>
                 </div>
+                <div class="account-switch orders">
+                    <img src="assets/images/orders.svg" alt="orders"> Заказы
+                </div>
+                <div class="account-switch resources">
+                    <img src="assets/images/resorces.svg" alt="resources"> Ресурсы
+                </div>
+                <div class="account-switch report">
+                    <img src="assets/images/printer.svg" alt="report"> Отчет
+                </div>
             </div>
             <div class="profile-orders">
-
+                <div class="profile-order-row">
+                    <div>1 Lorem ipsum dolor. ipsam dolores modi, expedita fuga saepe alias fugit nam dolorum quam impedit voluptatum sit error.</div>
+                    <div>sit amet consectetur adipisicing elit</div>
+                    <div>sit amet consectetur adipisicing elit</div>
+                    <div>Excepturi commodi, nobis neque architecto ea illum</div>
+                    <div>2</div>
+                    <div>2</div>
+                </div>
             </div>
         </div>
     </div>
-    <p class="login-success">Successful login!</p>
 </body>
 </html>
