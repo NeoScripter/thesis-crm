@@ -5,10 +5,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include "../classes/dbh.classes.php";
     $dbHandler = new DbhHandler();
     
-    $order_id = $_POST['order-id'];
-    $is_order_finished = $_POST['finished'];
+    $order_ids = $_POST['order_ids'];
+    $finished_statuses = $_POST['finished_statuses'];
     
-    $dbHandler->finishOrder($is_order_finished, $order_id);
+    foreach ($order_ids as $index => $order_id) {
+        $is_order_finished = $finished_statuses[$index];
+        $dbHandler->finishOrder($is_order_finished, $order_id);
+    }
     
     header("location: ../account.php");
     exit;

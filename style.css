@@ -425,11 +425,12 @@ body {
     padding-inline: 1rem;
 }
 
-.profile-orders {
+.profile-display {
     background-color: #fff;
     grid-row: span 4;
     border-radius: inherit;
     padding: 2em;
+    color: black;
 }
 
 .profile-order-row {
@@ -503,6 +504,10 @@ body {
 }
 
 .account-switch {
+    width: 100%;
+}
+
+.account-switch button {
     padding: 0.3em;
     margin-top: 0.5em;
     background-color: #fff;
@@ -514,6 +519,7 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
+    width: 100%;
 }
 
 .account-switch img {
@@ -522,7 +528,7 @@ body {
 }
 
 .profile-header,
-.profile-orders {
+.profile-display {
     grid-column: span 3;
 }
 

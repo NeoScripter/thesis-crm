@@ -9,6 +9,15 @@
     $orderInfo = new OrderInfo();
     $profileId = $profileInfo->fetchId($_SESSION["userid"]);
     $orders = $orderInfo->getOrderInfo($profileId);
+
+    $current_display = 'orders';
+    if (isset($_POST['orders-switch'])) {
+        $current_display = 'orders';
+    } elseif (isset($_POST['resources-switch'])) {
+        $current_display = 'resources';
+    } elseif (isset($_POST['report-switch'])) {
+        $current_display = 'report';
+    }
 ?>
 
 <!DOCTYPE html>
@@ -59,55 +68,59 @@
                     echo $profileInfo->fetchMaterial($_SESSION["userid"]); 
                     ?>
                 </div>
-                <div class="account-switch orders">
-                    <img src="assets/images/orders.svg" alt="orders"> Заказы
-                </div>
-                <div class="account-switch resources">
-                    <img src="assets/images/resorces.svg" alt="resources"> Ресурсы
-                </div>
-                <div class="account-switch report">
-                    <img src="assets/images/printer.svg" alt="report"> Отчет
-                </div>
-            </div>
-            <div class="profile-orders">
-                <div class="profile-order-row">
-                    <div>Имя</div>
-                    <div>Телефон</div>
-                    <div>Название изделие</div>
-                    <div>Чертеж</div>
-                    <div>Комментарий</div>
-                    <div>Выполнен</div>
-                </div>
-                <form class="profile-order-row" action="includes/finish-order.inc.php" method="post">
-                    <?php 
-                    foreach($orders as $order) {
-                        $notFinished = ($order['finished'] == "Нет") ? "selected" : "";
-                        $finished = ($order['finished'] == "Нет") ? "" : "selected";
-                        echo '<div>' . $order['username'] . '</div>';
-                        echo '<input type="hidden" name="order-id" value="' . $order['order_id'] . '">';
-                        echo '<div>' . $order['phone'] . '</div>';
-                        echo '<div>' . $order['item_description'] . '</div>';
-                        echo '<div class="image-expandable">' . '<img src="' . $order["item_image"] . '" alt="drawing" class="order-drawing">' . '</div>';
-                        echo '<div>' . $order['item_comment'] . '</div>';
-                        echo '<select name="finished" class="finished-select" onchange="submitForm()">
-                        <option value="Нет" ' . $notFinished . '>Нет</option>
-                        <option value="Да" ' . $finished . '>Да</option>
-                        </select>';
-                    }
-                    ;?>
+                <form class="account-switch orders" action="account.php" method="post">
+                    <button name="orders-switch"><img src="assets/images/orders.svg" alt="orders"> Заказы</button>
                 </form>
+                <form class="account-switch resources" action="account.php" method="post">
+                    <button name="resources-switch"><img src="assets/images/resorces.svg" alt="resources"> Ресурсы</button>
+                </form>
+                <form class="account-switch report" action="account.php" method="post">
+                    <button name="report-switch"><img src="assets/images/printer.svg" alt="report"> Отчет</button>
+                </form>
+            </div>
+            <div class="profile-display">
+                <div class="profile-orders" style="display: <?php echo ($current_display == 'orders') ? 'block' : 'none' ;?>">
+                    <div class="profile-order-row">
+                        <div>Имя</div>
+                        <div>Телефон</div>
+                        <div>Название изделие</div>
+                        <div>Чертеж</div>
+                        <div>Комментарий</div>
+                        <div>Выполнен</div>
+                    </div>
+                    <form class="profile-order-row" action="includes/finish-order.inc.php" method="post">
+                    <?php foreach($orders as $order): ?>
+                        <div><?php echo $order['username']; ?></div>
+                        <input type="hidden" name="order_ids[]" value="<?php echo $order['order_id']; ?>">
+                        <div><?php echo $order['phone']; ?></div>
+                        <div><?php echo $order['item_description']; ?></div>
+                        <div class="image-expandable">
+                            <img src="<?php echo $order["item_image"]; ?>" alt="drawing" class="order-drawing">
+                        </div>
+                        <div><?php echo $order['item_comment']; ?></div>
+                        <select name="finished_statuses[]" class="finished-select">
+                            <option value="Нет" <?php echo ($order['finished'] == 'Нет') ? 'selected' : ''; ?>>Нет</option>
+                            <option value="Да" <?php echo ($order['finished'] == 'Нет') ? '' : 'selected'; ?>>Да</option>
+                        </select>
+                    <?php endforeach; ?>
+                    </form>
+                </div>
+                <div class="profile-resources" style="display: <?php echo ($current_display == 'resources') ? 'block' : 'none' ;?>">
+                    This is the resources page!
+                </div>
+                <div class="profile-report" style="display: <?php echo ($current_display == 'report') ? 'block' : 'none' ;?>">
+                    This is the report page!
+                </div>
             </div>
         </div>
     </div>
     <script>
-    const selectElements = document.querySelectorAll('.finished-select');
-    
-    selectElements.forEach(function(selectElement) {
-        selectElement.addEventListener('change', function() {
-            const form = selectElement.closest('form');
-            if (form) {
-                form.submit();
-            }
+    document.addEventListener('DOMContentLoaded', function() {
+        const selects = document.querySelectorAll('.finished-select');
+        selects.forEach(select => {
+            select.addEventListener('change', function() {
+                this.form.submit();
+            });
         });
     });
     </script>
