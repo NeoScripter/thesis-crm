@@ -61,6 +61,8 @@ class Dbh {
                 item_description TEXT NOT NULL,
                 item_image TEXT NOT NULL,
                 item_comment TEXT NOT NULL,
+                finished VARCHAR(255) DEFAULT 'Нет',
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 selected_worker int,
                 PRIMARY KEY (order_id),
                 FOREIGN KEY (selected_worker) REFERENCES profiles(profiles_id)
@@ -94,11 +96,10 @@ class DbhHandler extends Dbh {
         return $stmt->fetch();
     }
 
-    public function getItems() {
-        $sql = "SELECT * FROM items";
+    public function finishOrder($is_order_completed, $id) {
+        $sql = "UPDATE orders SET finished = ? WHERE order_id = ?";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll();
+        $stmt->execute([$is_order_completed, $id]);
     }
 
     public function getWorkersByMaterial($material) {

@@ -450,6 +450,16 @@ body {
     padding: 0.2em;
 }
 
+.finish-order {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.finished-select {
+    background-color: #fff;
+    cursor: pointer;
+}
+
 .order-drawing {
     width: 40px;
 }
