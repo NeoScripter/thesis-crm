@@ -73,7 +73,8 @@ class Dbh {
                 users_id INT,
                 src_name VARCHAR(255),
                 src_qnt VARCHAR(255),
-                PRIMARY KEY (src_id)
+                PRIMARY KEY (src_id),
+                FOREIGN KEY (users_id) REFERENCES profiles(profiles_id)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
             $dbh->exec($createTableUsers);
@@ -118,6 +119,18 @@ class DbhHandler extends Dbh {
             }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function fetchResourceById($id) {
+        try {
+            $sql = "SELECT * FROM resources WHERE users_id = ?";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$id]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
         }
     }
 

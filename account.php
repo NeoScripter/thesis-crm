@@ -7,8 +7,10 @@
 
     $profileInfo = new ProfileInfoView();
     $orderInfo = new OrderInfo();
+    $dbHandler = new DbhHandler();
     $profileId = $profileInfo->fetchId($_SESSION["userid"]);
     $orders = $orderInfo->getOrderInfo($profileId);
+    $resources = $dbHandler->fetchResourceById($profileId);
 
     $current_display = 'orders';
     if (isset($_SESSION['orders-switch'])) {
@@ -103,15 +105,17 @@
                 </div>
                 <div class="profile-resources" style="display: <?php echo ($current_display == 'resources') ? 'block' : 'none' ;?>">
                     <form action="includes/update-resrc.inc.php" class="src-content" method="post">
+                        <?php foreach($resources as $src): ?>
                         <div class="src-row">
-                            <div class="src-name">Гвозди</div>
+                            <div class="src-name"><?php echo $src['src_name']; ?></div>
                             <div class="src-qnt">
-                                <button name="add">+</button>
-                                <div>100</div>
-                                <button name="deduct">-</button>
+                                <button name="add" value="<?php echo $src['src_id']; ?>">+</button>
+                                <div><?php echo $src['src_qnt']; ?></div>
+                                <button name="deduct" value="<?php echo $src['src_id']; ?>">-</button>
                             </div>
-                            <button name="remove">Удалить</button>
+                            <button name="remove" value="<?php echo $src['src_id']; ?>">Удалить</button>
                         </div>
+                        <?php endforeach; ?>
                     </form>
                 </div>
                 <div class="profile-report" style="display: <?php echo ($current_display == 'report') ? 'block' : 'none' ;?>">
