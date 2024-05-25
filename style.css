@@ -440,6 +440,43 @@ body {
     border-bottom: 1px solid black;
 }
 
+.src-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 100px 100px;
+    border-bottom: 1px solid black;
+    gap: 1rem;
+    padding: 0.5em 1em;
+}
+
+.src-row button {
+    background-color: #fff;
+    border-radius: 0.3em;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.src-content {
+    border: 1px solid black;
+    color: black;
+}
+
+.src-qnt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.src-qnt button {
+    width: 30px;
+    height: 30px;
+}
+
 .profile-order-row > * {
     border: 1px solid black;
     color: black;
@@ -519,7 +556,6 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
-    width: 100%;
 }
 
 .account-switch img {

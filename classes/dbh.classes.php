@@ -68,9 +68,18 @@ class Dbh {
                 FOREIGN KEY (selected_worker) REFERENCES profiles(profiles_id)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
+            $createTableResources = "CREATE TABLE IF NOT EXISTS resources (
+                src_id int NOT NULL AUTO_INCREMENT,
+                users_id INT,
+                src_name VARCHAR(255),
+                src_qnt VARCHAR(255),
+                PRIMARY KEY (src_id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+
             $dbh->exec($createTableUsers);
             $dbh->exec($createTableProfilers);
             $dbh->exec($createTableOrders);
+            $dbh->exec($createTableResources);
 
             return $dbh;
 
@@ -82,11 +91,34 @@ class Dbh {
 }
 
 class DbhHandler extends Dbh {
-    public function getUsers() {
-        $sql = "SELECT * FROM users";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll();
+    public function addResource($userId, $srcName, $srcQnt) {
+        try {
+            $stmt_check = $this->connect()->prepare("SELECT * FROM resources WHERE users_id = ? AND src_name = ?");
+            $stmt_check->execute([$userId, $srcName]);
+            
+            if ($stmt_check->rowCount() > 0) {
+                $sql_insert = "INSERT INTO resources (users_id, src_name, src_qnt) VALUES (?, ?, ?)";
+                $stmt_insert = $this->connect()->prepare($sql_insert);
+                $stmt_insert->execute([$userId, $srcName, $srcQnt]);
+            }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+    
+    public function updateResource($userId, $srcName, $srcQnt) {
+        try {
+            $stmt_check = $this->connect()->prepare("SELECT * FROM resources WHERE users_id = ? AND src_name = ?");
+            $stmt_check->execute([$userId, $srcName]);
+            
+            if ($stmt_check->rowCount() > 0) {
+                $sql_update = "UPDATE resources SET src_qnt = ? WHERE users_id = ? AND src_name = ?";
+                $stmt_update = $this->connect()->prepare($sql_update);
+                $stmt_update->execute([$srcQnt, $userId, $srcName]);
+            }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
 
     public function getUser($id) {

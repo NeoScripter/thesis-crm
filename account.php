@@ -11,12 +11,8 @@
     $orders = $orderInfo->getOrderInfo($profileId);
 
     $current_display = 'orders';
-    if (isset($_POST['orders-switch'])) {
-        $current_display = 'orders';
-    } elseif (isset($_POST['resources-switch'])) {
-        $current_display = 'resources';
-    } elseif (isset($_POST['report-switch'])) {
-        $current_display = 'report';
+    if (isset($_SESSION['orders-switch'])) {
+        $current_display = $_SESSION['orders-switch'];
     }
 ?>
 
@@ -68,13 +64,13 @@
                     echo $profileInfo->fetchMaterial($_SESSION["userid"]); 
                     ?>
                 </div>
-                <form class="account-switch orders" action="account.php" method="post">
+                <form class="account-switch orders" action="includes/account-switch.inc.php" method="post">
                     <button name="orders-switch"><img src="assets/images/orders.svg" alt="orders"> Заказы</button>
                 </form>
-                <form class="account-switch resources" action="account.php" method="post">
+                <form class="account-switch resources" action="includes/account-switch.inc.php" method="post">
                     <button name="resources-switch"><img src="assets/images/resorces.svg" alt="resources"> Ресурсы</button>
                 </form>
-                <form class="account-switch report" action="account.php" method="post">
+                <form class="account-switch report" action="includes/account-switch.inc.php" method="post">
                     <button name="report-switch"><img src="assets/images/printer.svg" alt="report"> Отчет</button>
                 </form>
             </div>
@@ -83,7 +79,7 @@
                     <div class="profile-order-row">
                         <div>Имя</div>
                         <div>Телефон</div>
-                        <div>Название изделие</div>
+                        <div>Название изделия</div>
                         <div>Чертеж</div>
                         <div>Комментарий</div>
                         <div>Выполнен</div>
@@ -106,7 +102,17 @@
                     </form>
                 </div>
                 <div class="profile-resources" style="display: <?php echo ($current_display == 'resources') ? 'block' : 'none' ;?>">
-                    This is the resources page!
+                    <form action="includes/update-resrc.inc.php" class="src-content" method="post">
+                        <div class="src-row">
+                            <div class="src-name">Гвозди</div>
+                            <div class="src-qnt">
+                                <button name="add">+</button>
+                                <div>100</div>
+                                <button name="deduct">-</button>
+                            </div>
+                            <button name="remove">Удалить</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="profile-report" style="display: <?php echo ($current_display == 'report') ? 'block' : 'none' ;?>">
                     This is the report page!
