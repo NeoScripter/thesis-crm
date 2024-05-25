@@ -458,10 +458,48 @@ body {
 .finished-select {
     background-color: #fff;
     cursor: pointer;
+    transition: all 0.5 ease-in-out;
+}
+
+.finished-select:hover,
+.finished-select:focus {
+    background-color: rgb(204, 218, 230);
 }
 
 .order-drawing {
     width: 40px;
+}
+
+.fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.fullscreen-overlay img {
+    width: 90%; 
+    height: 90%; 
+    object-fit: contain;
+    transition: transform 0.5s ease;
+    transform: scale(0);
+}
+
+.image-expandable {
+    cursor: pointer;
+    transition: all 0.5 ease-in-out;
+}
+
+.image-expandable:hover,
+.image-expandable:focus {
+    background-color: rgb(204, 218, 230);
 }
 
 .account-switch {

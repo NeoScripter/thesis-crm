@@ -81,13 +81,13 @@
                 <form class="profile-order-row" action="includes/finish-order.inc.php" method="post">
                     <?php 
                     foreach($orders as $order) {
-                        $notFinished = ($order['finished'] === "Нет") ? "selected" : "";
-                        $finished = ($order['finished'] === "Нет") ? "" : "selected";
+                        $notFinished = ($order['finished'] == "Нет") ? "selected" : "";
+                        $finished = ($order['finished'] == "Нет") ? "" : "selected";
                         echo '<div>' . $order['username'] . '</div>';
                         echo '<input type="hidden" name="order-id" value="' . $order['order_id'] . '">';
                         echo '<div>' . $order['phone'] . '</div>';
                         echo '<div>' . $order['item_description'] . '</div>';
-                        echo '<div>' . '<img src="' . $order["item_image"] . '" alt="drawing" class="order-drawing">' . '</div>';
+                        echo '<div class="image-expandable">' . '<img src="' . $order["item_image"] . '" alt="drawing" class="order-drawing">' . '</div>';
                         echo '<div>' . $order['item_comment'] . '</div>';
                         echo '<select name="finished" class="finished-select" onchange="submitForm()">
                         <option value="Нет" ' . $notFinished . '>Нет</option>
@@ -104,7 +104,7 @@
     
     selectElements.forEach(function(selectElement) {
         selectElement.addEventListener('change', function() {
-            var form = selectElement.closest('form');
+            const form = selectElement.closest('form');
             if (form) {
                 form.submit();
             }

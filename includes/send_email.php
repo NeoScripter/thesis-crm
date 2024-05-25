@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirmation_code = rand(100000, 999999);
     $_SESSION['cnf-code'] = $confirmation_code;
     $_SESSION["under-verification"] = true;
+    $_SESSION["email-entered"] = $email;
     // Email recipient and subject
     $to = $email;
     $subject = 'Код подтверждения';

@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirmation_code = $_SESSION['cnf-code'];
     unset($_SESSION['cnf-code']);
     unset($_SESSION["under-verification"]);
+    unset($_SESSION["email-entered"]);
 
     if ($confirmation_code == $code) {
         $_SESSION["code-verified"] = true;

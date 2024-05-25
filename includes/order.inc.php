@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!file_exists($dest_path)) {
                 move_uploaded_file($fileTmpPath, $dest_path);
             }
-            $path = 'uploads/profile-pics/' . $fileName;
+            $path = 'uploads/drawings/' . $fileName;
         } else {
             $path = 'assets/images/' . 'default-drawing.jpg';
         }

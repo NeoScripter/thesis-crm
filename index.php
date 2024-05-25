@@ -1,10 +1,16 @@
 <?php 
     session_start();
+    if (isset($_SESSION['order_submitted'])) {
+        echo '<script>alert("Ваша заявка успешно отправлена!")</script>';
+        session_unset();
+        session_destroy();
+    }
     $code_field = isset($_SESSION["under-verification"]) ? 'flex' : 'none';
     $email_field = ($code_field === 'flex') ? 'none' : 'flex';
     $login_errors = isset($_SESSION["login_errors"]) ? $_SESSION["login_errors"] : '';
     $signup_errors = isset($_SESSION["signup_errors"]) ? $_SESSION["signup_errors"] : '';
-    $email_errors = isset($_SESSION["email_errors"]) ? $_SESSION["email_errors"] : '';   
+    $email_errors = isset($_SESSION["email_errors"]) ? $_SESSION["email_errors"] : '';
+    $email_entered = isset($_SESSION["email-entered"]) ? $_SESSION["email-entered"] : '';   
     unset($_SESSION["under-verification"], $_SESSION["login_errors"], $_SESSION["signup_errors"], $_SESSION["email_errors"]);
 
     if (!isset($_SESSION['display_signup'])) {
@@ -14,12 +20,6 @@
     $switch_btn = ($_SESSION['display_signup']) ? 'Для заказчиков' : 'Для клиентов';
     $display_signup = ($_SESSION['display_signup']) ? 'flex' : 'none';
     $display_order = ($_SESSION['display_signup']) ? 'none' : 'flex';
-
-    if (isset($_SESSION['order_submitted'])) {
-        echo '<script>alert("Ваша заявка успешно отправлена!")</script>';
-        session_unset();
-        session_destroy();
-    }
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +30,6 @@
     <title>CRM system</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="index-outer-wrapper">
@@ -80,7 +79,7 @@
                 <button type="submit" name="submit" class="submit-btn">Отправить</button>
             </form>
             <form action="includes/verify_email.php" class="code-verify" method="post" style="<?php echo 'display: ' . $code_field; ?>">
-                <p>На указанный вами email<br> отправлен 6-значный код.<br> Введите его в поле снизу</p>
+                <p>На <?php echo $email_entered ;?><br> отправлен 6-значный код.<br> Введите его в поле снизу</p>
                 <input type="number" name="code" placeholder="Код">
                 <p class="errors-signup"><?php echo $email_errors ;?></p>
                 <button type="submit" name="submit" class="submit-btn">Подтвердить</button>

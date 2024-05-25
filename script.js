@@ -1,16 +1,40 @@
-/* document.addEventListener('DOMContentLoaded', () => {
-    const userSwitchBtn = document.querySelector('.switch-user');
-    const formWrapper = document.querySelector('.form-wrapper');
-    const orderWrapper = document.querySelector('.order-wrapper');
-    userSwitchBtn.addEventListener('click', () => {
-        if (formWrapper.style.display === 'flex') {
-            formWrapper.style.display = 'none';
-            orderWrapper.style.display = 'flex';
-            userSwitchBtn.textContent = 'Для клиентов';
-        } else {
-            formWrapper.style.display = 'flex';
-            orderWrapper.style.display = 'none';
-            userSwitchBtn.textContent = 'Для заказчиков';
-        }
-    });
-}); */
+document.addEventListener('DOMContentLoaded', () => {
+    // Expandable images 
+
+function setupImageOverlay(selector) {
+    const expandables = document.querySelectorAll(selector);
+    
+        expandables.forEach(element => {
+            element.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src; 
+                const overlay = document.createElement('div');
+                overlay.className = 'fullscreen-overlay';
+                overlay.style.opacity = '0'; 
+                overlay.style.transition = 'opacity 0.3s';
+    
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.style.transform = 'scale(0)';
+                img.style.transition = 'transform 0.5s';
+    
+                overlay.appendChild(img);
+                document.body.appendChild(overlay);
+    
+                setTimeout(() => { 
+                    overlay.style.opacity = '1';
+                    img.style.transform = 'scale(1)';
+                }, 200);
+    
+                overlay.addEventListener('click', function() {
+                    this.style.opacity = '0';
+                    img.style.transform = 'scale(0)';
+                    setTimeout(() => {
+                        document.body.removeChild(this);
+                    }, 300);
+                });
+            });
+        });
+    }
+    
+    setupImageOverlay('.image-expandable');
+});

@@ -30,7 +30,6 @@ unset($_SESSION["order_creation_errors"]);
     <title>CRM system</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <section class="profile">
