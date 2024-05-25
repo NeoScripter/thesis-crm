@@ -97,7 +97,7 @@ class DbhHandler extends Dbh {
             $stmt_check = $this->connect()->prepare("SELECT * FROM resources WHERE users_id = ? AND src_name = ?");
             $stmt_check->execute([$userId, $srcName]);
             
-            if ($stmt_check->rowCount() > 0) {
+            if ($stmt_check->rowCount() === 0) {
                 $sql_insert = "INSERT INTO resources (users_id, src_name, src_qnt) VALUES (?, ?, ?)";
                 $stmt_insert = $this->connect()->prepare($sql_insert);
                 $stmt_insert->execute([$userId, $srcName, $srcQnt]);
@@ -107,19 +107,25 @@ class DbhHandler extends Dbh {
         }
     }
     
-    public function updateResource($userId, $srcName, $srcQnt) {
+    public function updateResource($srcId, $srcQnt) {
         try {
-            $stmt_check = $this->connect()->prepare("SELECT * FROM resources WHERE users_id = ? AND src_name = ?");
-            $stmt_check->execute([$userId, $srcName]);
+            $stmt_check = $this->connect()->prepare("SELECT * FROM resources WHERE src_id = ?");
+            $stmt_check->execute([$srcId]);
             
             if ($stmt_check->rowCount() > 0) {
-                $sql_update = "UPDATE resources SET src_qnt = ? WHERE users_id = ? AND src_name = ?";
+                $sql_update = "UPDATE resources SET src_qnt = ? WHERE src_id = ?";
                 $stmt_update = $this->connect()->prepare($sql_update);
-                $stmt_update->execute([$srcQnt, $userId, $srcName]);
+                $stmt_update->execute([$srcQnt, $srcId]);
             }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
+    }
+
+    public function deleteResource($srcId) {
+        $sql_delete = "DELETE FROM resources WHERE src_id = ?";
+        $stmt_delete = $this->connect()->prepare($sql_delete);
+        $stmt_delete->execute([$srcId]);
     }
 
     public function fetchResourceById($id) {

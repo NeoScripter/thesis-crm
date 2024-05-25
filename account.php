@@ -109,13 +109,21 @@
                         <div class="src-row">
                             <div class="src-name"><?php echo $src['src_name']; ?></div>
                             <div class="src-qnt">
-                                <button name="add" value="<?php echo $src['src_id']; ?>">+</button>
+                                <button type="submit" name="add[<?php echo $src['src_id']; ?>]">+</button>
                                 <div><?php echo $src['src_qnt']; ?></div>
-                                <button name="deduct" value="<?php echo $src['src_id']; ?>">-</button>
+                                <input type="hidden" name="src_qnt[]" value="<?php echo $src['src_qnt']; ?>">
+                                <button type="submit" name="deduct[<?php echo $src['src_id']; ?>]">-</button>
+                                <input type="hidden" name="src_id[]" value="<?php echo $src['src_id']; ?>">
                             </div>
-                            <button name="remove" value="<?php echo $src['src_id']; ?>">Удалить</button>
+                            <button type="submit" name="remove[<?php echo $src['src_id']; ?>]">Удалить</button>
                         </div>
                         <?php endforeach; ?>
+                        <div class="src-row add-new-item">
+                            <input type="text" name="new-src" placeholder="Название">
+                            <input type="hidden" name="profile-id" value="<?php echo $profileId; ?>">
+                            <input type="text" name="new-qnt" placeholder="Шт.">
+                            <button type="submit" name="add-new">Добавить</button>
+                        </div>
                     </form>
                 </div>
                 <div class="profile-report" style="display: <?php echo ($current_display == 'report') ? 'block' : 'none' ;?>">

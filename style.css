@@ -460,6 +460,10 @@ body {
     gap: 5px;
 }
 
+.src-row input {
+    padding-inline: 0.5em;
+}
+
 .src-content {
     border: 1px solid black;
     color: black;
