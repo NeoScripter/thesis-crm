@@ -140,6 +140,18 @@ class DbhHandler extends Dbh {
         }
     }
 
+    public function fetchOrdersByDate($startDate, $endDate, $profileId, $status) {
+        try {
+            $sql = "SELECT * FROM orders WHERE CREATED_AT BETWEEN ? AND ? AND finished = ? AND selected_worker = ?";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$startDate, $endDate, $status, $profileId]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
     public function getUser($id) {
         $sql = "SELECT * FROM users WHERE users_uid = ?";
         $stmt = $this->connect()->prepare($sql);

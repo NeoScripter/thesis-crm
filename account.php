@@ -127,7 +127,21 @@
                     </form>
                 </div>
                 <div class="profile-report" style="display: <?php echo ($current_display == 'report') ? 'block' : 'none' ;?>">
-                    This is the report page!
+                    <form action="includes/generate-word.php" method="post" class="report-wrapper">
+                        <h4>Здесь вы можете скачать отчет о выполненных заказах и текущих ресурсах. Выберите период, за который будет составлен отчет.</h4>
+                        <div class="report-input-wrapper">
+                            <div>
+                                <label for="start_date">С:</label>
+                                <input type="date" id="start_date" name="start_date" required>
+                            </div>
+                            <input type="hidden" name="profile-id" value="<?php echo $profileId; ?>">
+                            <div>
+                                <label for="end_date">По:</label>
+                                <input type="date" id="end_date" name="end_date" required>
+                            </div>
+                        </div>
+                        <button type="submit" name="download">Скачать</button>
+                    </form>
                 </div>
             </div>
         </div>

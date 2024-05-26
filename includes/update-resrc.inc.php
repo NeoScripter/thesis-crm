@@ -11,6 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $new_src = $_POST['new-src'];
     $new_src_qnt = $_POST['new-qnt'];
 
+    if (isset($_POST['add-new'])) {
+        $dbHandler->addResource($profile_id, $new_src, $new_src_qnt);
+        header("location: ../account.php");
+        exit;
+    }
+
     foreach ($src_ids as $index => $src_id) {
         $current_qnt = $current_qnts[$index];
         $new_qnt = $current_qnt;
@@ -22,8 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif (isset($_POST['remove'][$src_id])) {
             $dbHandler->deleteResource($src_id);
             continue;
-        } elseif (isset($_POST['add-new'])) {
-            $dbHandler->addResource($profile_id, $new_src, $new_src_qnt);
         }
 
         $dbHandler->updateResource($src_id, $new_qnt);
