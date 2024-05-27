@@ -29,7 +29,7 @@ unset($_SESSION["order_creation_errors"]);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRM system</title>
     <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.min.css">
 </head>
 <body>
     <section class="profile">
