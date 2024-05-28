@@ -79,7 +79,7 @@
                     <button type="submit" name="submit" class="submit-btn">Отправить</button>
                 </form>
                 <form action="includes/verify_email.php" class="code-verify" method="post" style="<?php echo 'display: ' . $code_field; ?>">
-                    <p>На <?php echo $email_entered ;?><br> отправлен 6-значный код.<br> Введите его в поле снизу</p>
+                    <p class="cody-verify-p">На <?php echo $email_entered ;?><br> отправлен 6-значный код.<br> Введите его в поле снизу</p>
                     <input type="number" name="code" placeholder="Код">
                     <p class="errors-signup"><?php echo $email_errors ;?></p>
                     <button type="submit" name="submit" class="submit-btn">Подтвердить</button>

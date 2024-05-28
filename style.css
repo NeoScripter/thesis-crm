@@ -118,6 +118,11 @@ body {
     margin-top: 10px;
 }
 
+.cody-verify-p {
+    font-size: 14px;
+    color: rgb(3, 26, 38);
+}
+
 .switch-user {
     background-color: rgb(43, 68, 82);
     border: none;
@@ -298,23 +303,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(assets/images/office-bg.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    background-color: var(--bg-color);
     position: relative;
-    color: #fff;
-}
-
-.account-outer-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(59, 56, 63, 0.95);
-    z-index: 5;
+    color: rgb(3, 26, 38);
 }
 
 .profile-settings-wrapper {
@@ -331,21 +322,32 @@ body {
 .user-info {
     display: flex;
     gap: 1rem;
-    border: 1px solid var(--btn-color);
     padding: 0.3em;
     margin-top: 0.5em;
-    background-color: #fff;
-    border-radius: 0.3em;
+    border-radius: 10px;
+    box-shadow: 
+    4px 4px 6px rgba(0,0,0,0.8),
+    inset 3px 3px 5px rgba(255, 255, 255, 0.7);
+    background-color: rgb(215, 204, 195);
+    font-family: 'Montserrat Medium';
 }
 
 .specialty {
     padding: 0.3em;
     margin-top: 0.5em;
-    background-color: #fff;
     border-radius: 0.3em;
-    color: #000;
     width: 100%;
     text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 
+    4px 4px 6px rgba(0,0,0,0.8),
+    inset 3px 3px 5px rgba(255, 255, 255, 0.7);
+    background-color: rgb(215, 204, 195);
+    font-family: 'Montserrat Medium';
 }
 
 .account-info-ul {
@@ -372,20 +374,33 @@ body {
 }
 
 .profile-settings-wrapper form button {
-    background-color: var(--btn-color);
+    background-color: rgb(43, 68, 82);
     border: none;
-    border-radius: 6px;
-    color: #fff;
-    padding: 0.2em 0.5em;
+    border-radius: 15px;
+    color: var(--creamy-color);
+    padding: 0.5em 0.8em;
+    min-width: 100px;
+    font-family: 'Montserrat Bold';
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 
+    2px 2px 2px rgba(0,0,0,0.8),
+    inset 2px 2px 2px rgba(255, 255, 255, 0.7);
     cursor: pointer;
 }
 
 .profile-settings-wrapper form input,
 .profile-settings-wrapper form select {
-    border-radius: 7px;
-    padding: 0.2em 0.5em;
     font-size: 14px;
     width: 200px;
+    background-color: rgb(243, 239, 239);
+    border: 2px solid rgb(158, 139, 129);
+    border-radius: 7px;
+    padding: 0.2em 0.5em;
+    color: rgb(80, 65, 57);
+    box-shadow: 
+    1px 1px 2px rgba(0,0,0,0.8),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.7);
 }
 
 .client-order {
@@ -429,23 +444,51 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(assets/images/office-bg.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    color: #fff;
+    background-color: var(--bg-color);
 }
 
-.profile-bg::after {
-    content: '';
+.profile-settings-wrapper {
+    max-width: 700px;
+    border-radius: 20px;
+    background-color: var(--creamy-color);
+    position: relative;
+    z-index: 1;
+}
+
+.profile-settings-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    left: -5px;
+    right: -5px;
+    background: linear-gradient(to right, var(--border-color-light) 0, var(--border-color-dark) 20%);
+    z-index: -2;
+    border-radius: 10px;
+}
+
+.profile-settings-wrapper::after {
+    content: "";
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(59, 56, 63, 0.95);
-    z-index: 5;
+    background-color: var(--creamy-color);
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.profile-settings-wrapper input {
+    background-color: rgb(243, 239, 239);
+    border: 2px solid rgb(158, 139, 129);
+    border-radius: 7px;
+    padding: 0.2em 0.5em;
+    font-size: 14px;
+    color: rgb(80, 65, 57);
+    box-shadow: 
+    1px 1px 2px rgba(0,0,0,0.8),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.7);
 }
 
 .profile-wrapper {
@@ -459,13 +502,14 @@ body {
 }
 
 .profile-info {
-    background-color: black;
+    background-color: var(--creamy-color);
     grid-row: span 5;
     border-radius: inherit;
     display: flex;
     align-items: center;
     flex-direction: column;
     padding: 1vw;
+    border: 2px solid rgb(43, 68, 82);
 }
 
 .profile-img-wrapper {
@@ -487,10 +531,17 @@ body {
 }
 
 .profile-settings {
-    background-color: #fff;
-    color: black;
-    border-radius: 10px;
-    padding: 0.2em 0.4em;
+    background-color: rgb(43, 68, 82);
+    border: none;
+    border-radius: 15px;
+    color: var(--creamy-color);
+    padding: 0.5em 0.8em;
+    font-family: 'Montserrat Bold';
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 
+    2px 2px 2px rgba(0,0,0,0.8),
+    inset 2px 2px 2px rgba(255, 255, 255, 0.7);
     cursor: pointer;
     text-decoration: none;
 }
@@ -503,27 +554,30 @@ body {
 }
 
 .profile-header {
-    background-color: black;
+    background-color: var(--creamy-color);
     border-radius: inherit;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-inline: 1rem;
+    border: 2px solid rgb(43, 68, 82);
 }
 
 .profile-display {
-    background-color: #fff;
+    background-color: var(--creamy-color);
     grid-row: span 4;
     border-radius: inherit;
     padding: 2em;
     color: black;
+    border: 2px solid rgb(43, 68, 82);
 }
 
 .profile-order-row {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     border-bottom: 1px solid black;
+    max-width: 800px;
 }
 
 .src-row {
@@ -536,15 +590,22 @@ body {
 }
 
 .src-row button {
-    background-color: #000;
-    border-radius: 0.3em;
-    color: #fff;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
+    background-color: rgb(43, 68, 82);
     border: none;
+    border-radius: 15px;
+    color: var(--creamy-color);
+    font-family: 'Montserrat Bold';
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 
+    2px 2px 2px rgba(0,0,0,0.8),
+    inset 2px 2px 2px rgba(255, 255, 255, 0.7);
+    cursor: pointer;
 }
 
 .src-row input {
@@ -579,24 +640,34 @@ body {
 }
 
 .report-wrapper button {
-    background-color: #000;
     border-radius: 0.3em;
-    color: #fff;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.2em 0.5em;
+    background-color: rgb(43, 68, 82);
     border: none;
+    border-radius: 15px;
+    color: var(--creamy-color);
+    padding: 0.5em 0.8em;
+    min-width: 100px;
+    font-family: 'Montserrat Bold';
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 
+    2px 2px 2px rgba(0,0,0,0.8),
+    inset 2px 2px 2px rgba(255, 255, 255, 0.7);
+    cursor: pointer;
 }
 
 .profile-order-row > * {
-    border: 1px solid black;
-    color: black;
+    border: 1.5px solid rgb(43, 68, 82);
+    color: rgb(43, 68, 82);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.8rem;
+    font-family: 'Montserrat Medium';
     text-align: center;
     padding: 0.2em;
 }
@@ -607,9 +678,12 @@ body {
 }
 
 .finished-select {
-    background-color: #fff;
     cursor: pointer;
     transition: all 0.5 ease-in-out;
+    font-size: 14px;
+    background-color: var(--creamy-color);
+    padding: 0.2em 0.5em;
+    color: rgb(80, 65, 57);
 }
 
 .finished-select:hover,
@@ -660,15 +734,17 @@ body {
 .account-switch button {
     padding: 0.3em;
     margin-top: 0.5em;
-    background-color: #fff;
     border-radius: 0.3em;
-    color: #000;
     width: 100%;
     text-align: center;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 5px;
+    box-shadow: 
+    4px 4px 6px rgba(0,0,0,0.8),
+    inset 3px 3px 5px rgba(255, 255, 255, 0.7);
+    background-color: rgb(215, 204, 195);
 }
 
 .account-switch img {
@@ -690,12 +766,24 @@ body {
 }
 
 .header-logout {
-    background-color: var(--btn-color);
+    background-color: rgb(43, 68, 82);
     border: none;
-    border-radius: 6px;
-    color: #fff;
-    padding: 0.2em 0.5em;
+    border-radius: 15px;
+    color: var(--creamy-color);
+    padding: 0.5em 0.8em;
+    font-family: 'Montserrat Bold';
+    font-size: 12px;
     cursor: pointer;
+    box-shadow: 
+    2px 2px 2px rgba(0,0,0,0.8),
+    inset 2px 2px 2px rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+    .profile-order-row {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -722,14 +810,23 @@ body {
     .specialty {
         max-width: 215px;
     }
+    .logo {
+        display: none;
+    }
+    .intro {
+        padding: 1rem;
+        align-items: center;
+        justify-content: center;
+    }
     .intro-h1 {
-        font-size: 18px;
-        margin-top: 10px;
-        margin-left: -20px;
+        margin-top: 0;
+        text-align: center;
     }
     .intro-p {
-        font-size: 10px;
-        margin-left: -20px;
+        text-align: center;
+    }
+    .profile-order-row {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
